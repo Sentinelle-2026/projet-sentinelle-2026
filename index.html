@@ -11,7 +11,7 @@
 <style>
   :root {
     color-scheme: light;
-    /* ---- Thème Équipe Sentinelle : vert & blanc, accent orange (Côte d’Ivoire) ---- */
+    /* ---- Thème Équipe Sentinelle : orange & blanc, accent vert (Côte d’Ivoire) ---- */
     --page: #eef2ec;
     --panel: #ffffff;
     --panel-2: #ffffff;
@@ -23,9 +23,9 @@
     --baseline: #c6d2c4;
     --border: rgba(20, 70, 30, 0.16);
     --border-strong: rgba(20, 70, 30, 0.32);
-    --esmg: #1b5e20;
-    --esmg-dark: #123f16;
-    --gold: #E8720C;
+    --esmg: #E8720C;
+    --esmg-dark: #B85A08;
+    --gold: #1b5e20;
     --series-1: #2a78d6;
     --series-2: #eb6834;
     --series-3: #1baf7a;
@@ -34,7 +34,7 @@
     --st-serious: #ec835a;
     --st-critical: #d03b3b;
     --water: #2e7fc2;
-    --accent-grad: linear-gradient(90deg, #FDB44B, #E8720C);
+    --accent-grad: linear-gradient(90deg, #72D679, #1b5e20);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { height: 100%; overflow: hidden; overscroll-behavior: none; touch-action: pan-x pan-y; }
@@ -59,8 +59,8 @@
   }
   .brand-mark {
     width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; font-size: 17px; flex: none;
-    background: linear-gradient(135deg, #123f16, #1b5e20);
-    box-shadow: 0 0 18px rgba(27,94,32,0.4), inset 0 1px 0 rgba(255,255,255,0.25);
+    background: linear-gradient(135deg, #B85A08, #E8720C);
+    box-shadow: 0 0 18px rgba(232,114,12,0.4), inset 0 1px 0 rgba(255,255,255,0.25);
   }
   .brand { font-size: 16px; font-weight: 800; letter-spacing: 0.3px; white-space: nowrap; }
   .brand .accent { background: var(--accent-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -80,7 +80,7 @@
   #appmenu::-webkit-scrollbar { display: none; }
   #appmenu span { padding: 6px 12px; border-radius: 7px; font-size: 11.5px; color: var(--text-secondary); cursor: pointer; white-space: nowrap; }
   #appmenu span:hover { background: rgba(120,170,230,0.1); color: var(--text-primary); }
-  #appmenu span.on { background: rgba(27,94,32,0.18); color: #1b5e20; font-weight: 700; }
+  #appmenu span.on { background: rgba(232,114,12,0.18); color: #E8720C; font-weight: 700; }
   .appbar-right { margin-left: auto; display: flex; align-items: center; gap: 12px; flex: none; }
   .live {
     display: inline-flex; align-items: center; gap: 7px; font-size: 10px; font-weight: 800; letter-spacing: 1.2px;
@@ -101,7 +101,7 @@
   .feat { display: flex; align-items: center; gap: 9px; padding: 0 10px; min-width: 0; }
   .feat + .feat { border-left: 1px solid rgba(160,190,230,0.08); }
   .feat .fi { width: 26px; height: 26px; flex: none; border-radius: 50%; display: grid; place-items: center; font-size: 13px;
-    background: rgba(27,94,32,0.12); border: 1px solid rgba(27,94,32,0.35); }
+    background: rgba(232,114,12,0.12); border: 1px solid rgba(232,114,12,0.35); }
   .feat b { font-size: 10.5px; display: block; letter-spacing: 0.3px; white-space: nowrap; }
   .feat i { font-style: normal; font-size: 9.5px; color: var(--text-muted); display: block; white-space: nowrap; }
 
@@ -116,12 +116,12 @@
   #left::-webkit-scrollbar-thumb, #right::-webkit-scrollbar-thumb, .subview::-webkit-scrollbar-thumb { background: var(--baseline); border-radius: 3px; }
   .sec-title {
     display: flex; align-items: center; gap: 8px; margin: 14px 0 9px; font-size: 10.5px; font-weight: 800;
-    letter-spacing: 1px; text-transform: uppercase; color: #1b5e20;
+    letter-spacing: 1px; text-transform: uppercase; color: #E8720C;
   }
   .sec-title:first-child { margin-top: 2px; }
   .sec-title .num {
-    width: 17px; height: 17px; border-radius: 5px; background: rgba(27,94,32,0.2); border: 1px solid rgba(27,94,32,0.45);
-    display: grid; place-items: center; font-size: 9.5px; color: #1b5e20;
+    width: 17px; height: 17px; border-radius: 5px; background: rgba(232,114,12,0.2); border: 1px solid rgba(232,114,12,0.45);
+    display: grid; place-items: center; font-size: 9.5px; color: #E8720C;
   }
   .field { margin-bottom: 9px; }
   .field label { display: block; font-size: 10px; color: var(--text-muted); margin-bottom: 4px; letter-spacing: 0.3px; }
@@ -129,23 +129,23 @@
     width: 100%; background: var(--inset); border: 1px solid var(--border); border-radius: 7px;
     padding: 6px 8px; font-size: 11px; color: var(--text-primary); outline: none;
   }
-  .field select:focus, .field input:focus { border-color: rgba(27,94,32,0.6); }
+  .field select:focus, .field input:focus { border-color: rgba(232,114,12,0.6); }
   .coords-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
   .range-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
   .range-row label { flex: 1; font-size: 10.5px; color: var(--text-secondary); }
-  .range-row output { font-size: 10.5px; color: #1b5e20; font-variant-numeric: tabular-nums; min-width: 38px; text-align: right; }
-  input[type="range"] { flex: 1.2; accent-color: #1b5e20; height: 3px; }
+  .range-row output { font-size: 10.5px; color: #E8720C; font-variant-numeric: tabular-nums; min-width: 38px; text-align: right; }
+  input[type="range"] { flex: 1.2; accent-color: #E8720C; height: 3px; }
   .chk { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--text-secondary); padding: 4px 0; cursor: pointer; }
-  .chk input { accent-color: #1b5e20; width: 13px; height: 13px; }
+  .chk input { accent-color: #E8720C; width: 13px; height: 13px; }
   .chk .swl { width: 10px; height: 10px; border-radius: 3px; flex: none; }
   #btn-run {
     width: 100%; margin-top: 12px; padding: 10px; border: none; border-radius: 9px; cursor: pointer;
     font-size: 12px; font-weight: 800; letter-spacing: 0.8px; color: #fff;
-    background: linear-gradient(135deg, #123f16, #1b5e20);
-    box-shadow: 0 4px 18px rgba(27,94,32,0.35), inset 0 1px 0 rgba(255,255,255,0.25);
+    background: linear-gradient(135deg, #B85A08, #E8720C);
+    box-shadow: 0 4px 18px rgba(232,114,12,0.35), inset 0 1px 0 rgba(255,255,255,0.25);
     transition: transform 0.15s, box-shadow 0.2s;
   }
-  #btn-run:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(27,94,32,0.5), inset 0 1px 0 rgba(255,255,255,0.25); }
+  #btn-run:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(232,114,12,0.5), inset 0 1px 0 rgba(255,255,255,0.25); }
   .left-note { margin-top: 12px; font-size: 9.5px; color: var(--text-muted); line-height: 1.5; border-top: 1px solid var(--border); padding-top: 10px; }
 
   #center { flex: 1; display: flex; flex-direction: column; min-width: 0; background: #060a10; }
@@ -161,9 +161,9 @@
   }
   .tab:hover { color: var(--text-secondary); background: rgba(120,170,230,0.05); }
   .tab.on {
-    color: #1b5e20; background: linear-gradient(180deg, rgba(27,94,32,0.16), rgba(27,94,32,0.04));
+    color: #E8720C; background: linear-gradient(180deg, rgba(232,114,12,0.16), rgba(232,114,12,0.04));
     border-color: var(--border-strong);
-    box-shadow: inset 0 2px 0 #1b5e20;
+    box-shadow: inset 0 2px 0 #E8720C;
   }
   .view { flex: 1; min-height: 0; display: none; }
   .view.on { display: flex; flex-direction: column; }
@@ -204,7 +204,7 @@
     border: none; background: transparent; color: var(--text-muted); font-size: 10.5px; font-weight: 800;
     letter-spacing: 0.8px; padding: 6px 14px; border-radius: 8px; cursor: pointer;
   }
-  #layer-switch button.on { background: rgba(27,94,32,0.25); color: #1b5e20; box-shadow: inset 0 0 0 1px rgba(27,94,32,0.5); }
+  #layer-switch button.on { background: rgba(232,114,12,0.25); color: #E8720C; box-shadow: inset 0 0 0 1px rgba(232,114,12,0.5); }
   #conc-legend { top: 12px; left: 50%; transform: translateX(-50%); padding: 8px 12px; font-size: 10px; color: var(--text-secondary); display: flex; gap: 12px; align-items: center; }
   #conc-legend b { font-size: 9.5px; letter-spacing: 0.8px; color: var(--text-muted); }
   #conc-legend .cl { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
@@ -217,7 +217,7 @@
   #zoom-ctl button:hover { background: rgba(120,170,230,0.12); color: #fff; }
   #coords-hud { bottom: 12px; right: 12px; padding: 6px 12px; font-size: 10.5px; color: #2e6da8; font-variant-numeric: tabular-nums; }
   #scalebar { bottom: 12px; left: 12px; padding: 6px 12px; font-size: 10px; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; }
-  #scalebar .bar { width: 74px; height: 4px; background: linear-gradient(90deg, #fff 0 50%, #1b5e20 50% 100%); border-radius: 2px; }
+  #scalebar .bar { width: 74px; height: 4px; background: linear-gradient(90deg, #fff 0 50%, #E8720C 50% 100%); border-radius: 2px; }
   #maplegend2 { bottom: 12px; left: 50%; transform: translateX(-50%); padding: 7px 13px; display: flex; gap: 12px; font-size: 10px; color: var(--text-secondary); flex-wrap: wrap; justify-content: center; }
   #maplegend2 .key { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
   #maplegend2 .sw { width: 10px; height: 10px; border-radius: 3px; }
@@ -227,20 +227,20 @@
     flex: none; height: 62px; display: flex; align-items: center; gap: 12px; padding: 0 16px;
     background: #0a1019; border-top: 1px solid var(--border);
   }
-  #timebar .tb-title { font-size: 10px; font-weight: 800; letter-spacing: 1px; color: #1b5e20; text-transform: uppercase; white-space: nowrap; }
+  #timebar .tb-title { font-size: 10px; font-weight: 800; letter-spacing: 1px; color: #E8720C; text-transform: uppercase; white-space: nowrap; }
   #timebar .tb-sub { font-size: 9px; color: var(--text-muted); white-space: nowrap; }
   #play {
-    width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(27,94,32,0.5); background: rgba(27,94,32,0.15);
-    color: #1b5e20; font-size: 13px; cursor: pointer; flex: none;
+    width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(232,114,12,0.5); background: rgba(232,114,12,0.15);
+    color: #E8720C; font-size: 13px; cursor: pointer; flex: none;
   }
-  #play:hover { background: rgba(27,94,32,0.3); }
+  #play:hover { background: rgba(232,114,12,0.3); }
   #days { display: flex; gap: 5px; flex: 1; }
   .day {
     flex: 1; text-align: center; padding: 7px 0; border-radius: 8px; font-size: 10.5px; font-weight: 700; cursor: pointer;
     color: var(--text-muted); background: var(--inset); border: 1px solid var(--border); white-space: nowrap;
   }
   .day:hover { color: var(--text-secondary); border-color: var(--border-strong); }
-  .day.on { color: #fff; background: linear-gradient(135deg, #123f16, #1b5e20); border-color: transparent; box-shadow: 0 2px 12px rgba(27,94,32,0.4); }
+  .day.on { color: #fff; background: linear-gradient(135deg, #B85A08, #E8720C); border-color: transparent; box-shadow: 0 2px 12px rgba(232,114,12,0.4); }
   #day-info { font-size: 10.5px; color: var(--text-secondary); min-width: 210px; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
   #day-info b { color: var(--st-serious); }
 
@@ -269,7 +269,7 @@
   .ind-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .ind { background: var(--inset); border: 1px solid var(--border); border-radius: 9px; padding: 8px 10px; position: relative; overflow: hidden; }
   .ind::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--ind-accent, #1b5e20), transparent); }
+    background: linear-gradient(90deg, transparent, var(--ind-accent, #E8720C), transparent); }
   .ind .il { font-size: 8.5px; letter-spacing: 0.7px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3px; }
   .ind .iv { font-size: 16px; font-weight: 800; }
   .ind .iu { font-size: 10px; color: var(--text-muted); font-weight: 600; }
@@ -338,9 +338,18 @@
   .report-row:hover { background: rgba(120,170,230,0.06); }
   .report-row .ri { font-size: 15px; }
   .report-row b { color: var(--text-primary); }
-  .report-row .dl { margin-left: auto; color: #1b5e20; cursor: pointer; font-size: 10px; font-weight: 700; white-space: nowrap; }
+  .report-row .dl { margin-left: auto; color: #E8720C; cursor: pointer; font-size: 10px; font-weight: 700; white-space: nowrap; }
 
   /* ===== SOCLE COMMUN V2 : rôle, situation opérationnelle, recommandation IA, qualité des données ===== */
+  /* Vue simplifiée pour le rôle Décideur : masque les réglages techniques
+     (coordonnées brutes, seuils de détection, options UTM) qu'un décideur
+     n'a pas besoin de manipuler pour comprendre et valider une situation.
+     Les rôles Opérateur/Régulateur gardent le panneau technique complet. */
+  body[data-role="decideur"] .tech-only { display: none !important; }
+  .decideur-only-note { display: none; font-size: 10px; color: var(--esmg); font-weight: 700;
+    background: var(--inset); border: 1px dashed var(--border-strong); border-radius: 8px;
+    padding: 7px 9px; margin: 4px 0 10px; line-height: 1.5; }
+  body[data-role="decideur"] .decideur-only-note { display: block; }
   .role-select {
     background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.28); color: #fff;
     border-radius: 8px; padding: 5px 9px; font-size: 10.5px; font-weight: 700; cursor: pointer; letter-spacing: 0.2px;
@@ -372,7 +381,7 @@
     margin-left: auto; align-self: center; white-space: nowrap; border: 1px solid var(--border-strong); background: var(--inset);
     color: var(--esmg); font-weight: 800; font-size: 10px; border-radius: 6px; padding: 5px 10px; cursor: pointer;
   }
-  .op-open:hover { background: rgba(27,94,32,0.12); }
+  .op-open:hover { background: rgba(232,114,12,0.12); }
 
   .reco-card { background: var(--panel-2); border: 1px solid var(--border-strong); border-radius: 11px; padding: 13px 14px; margin-bottom: 16px; position: relative; overflow: hidden; }
   .reco-card::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, #8a5cd6, transparent); }
@@ -386,7 +395,7 @@
   .reco-actions button {
     border: none; border-radius: 7px; padding: 7px 12px; font-size: 10.5px; font-weight: 800; cursor: pointer; letter-spacing: 0.3px;
   }
-  .reco-btn-sim { background: linear-gradient(135deg,#B85A08,#E8720C); color: #fff; }
+  .reco-btn-sim { background: linear-gradient(135deg,#123f16,#1b5e20); color: #fff; }
   .reco-btn-exam { background: var(--inset); color: var(--esmg); border: 1px solid var(--border-strong) !important; }
   .reco-btn-app { background: #8a5cd6; color: #fff; }
   .reco-btn-app:disabled { background: var(--inset); color: var(--text-muted); cursor: not-allowed; border: 1px solid var(--border) !important; }
@@ -401,7 +410,7 @@
   .statgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
   .stattile { background: var(--panel-2); border: 1px solid var(--border); border-radius: 11px; padding: 12px 14px; position: relative; overflow: hidden; }
   .stattile::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, transparent, var(--tile-accent, #1b5e20), transparent); }
+    background: linear-gradient(90deg, transparent, var(--tile-accent, #E8720C), transparent); }
   .stattile .label { font-size: 9.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px; }
   .stattile .value { font-size: 26px; font-weight: 800; }
   .stattile .unit { font-size: 13px; color: var(--text-muted); font-weight: 600; }
@@ -421,7 +430,7 @@
     position: absolute; pointer-events: none; display: none; z-index: 60; min-width: 150px; max-width: 280px;
     background: rgba(11, 16, 26, 0.94); backdrop-filter: blur(10px);
     border: 1px solid rgba(120,170,230,0.3); border-radius: 10px; padding: 9px 12px;
-    font-size: 11.5px; box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 16px rgba(27,94,32,0.15);
+    font-size: 11.5px; box-shadow: 0 10px 30px rgba(0,0,0,0.6), 0 0 16px rgba(232,114,12,0.15);
   }
   .tooltip .tt-date { color: var(--text-muted); font-size: 10.5px; margin-bottom: 4px; }
   .tooltip .tt-row { display: flex; align-items: center; gap: 6px; margin-top: 3px; }
@@ -451,7 +460,7 @@
     width: min(620px, 92vw); max-height: 80vh; overflow-y: auto;
     background: linear-gradient(170deg, var(--panel-2), var(--panel));
     border: 1px solid var(--border-strong); border-radius: 16px; padding: 20px 24px;
-    box-shadow: 0 24px 70px rgba(0,0,0,0.7), 0 0 30px rgba(27,94,32,0.12);
+    box-shadow: 0 24px 70px rgba(0,0,0,0.7), 0 0 30px rgba(232,114,12,0.12);
     animation: rise 0.3s ease;
   }
   @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
@@ -527,12 +536,12 @@
   #plume-legend .pl-flux { margin-top: 7px; padding-top: 7px; border-top: 1px solid var(--grid); font-size: 10px; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
 
   /* ============================================================
-     SURCOUCHE THÈME ÉQUIPE SENTINELLE — vert & blanc, accent orange (Côte d’Ivoire)
+     SURCOUCHE THÈME ÉQUIPE SENTINELLE — orange & blanc, accent vert (Côte d’Ivoire)
      ============================================================ */
   #appbar {
-    background: linear-gradient(180deg, #1b5e20, #123f16);
+    background: linear-gradient(180deg, #E8720C, #B85A08);
     border-bottom: 3px solid var(--gold);
-    box-shadow: 0 4px 16px rgba(18, 63, 22, 0.35);
+    box-shadow: 0 4px 16px rgba(184, 90, 8, 0.35);
   }
   .brand { color: #ffffff; }
   .app-title { color: rgba(255,255,255,0.75); }
@@ -540,22 +549,22 @@
   .brand-mark img { width: 100%; height: 100%; object-fit: contain; border-radius: 7px; }
   #appmenu span { color: rgba(255,255,255,0.82); }
   #appmenu span:hover { background: rgba(255,255,255,0.14); color: #ffffff; }
-  #appmenu span.on { background: rgba(255,255,255,0.16); color: #FDB44B; }
+  #appmenu span.on { background: rgba(255,255,255,0.16); color: #72D679; }
   .clock { color: rgba(255,255,255,0.7); }
   .user-chip { color: rgba(255,255,255,0.85); border-left-color: rgba(255,255,255,0.25); }
-  .user-chip .avatar { background: linear-gradient(135deg, #E8720C, #B85A08); color: #fff; }
+  .user-chip .avatar { background: linear-gradient(135deg, #1b5e20, #123f16); color: #fff; }
   .live { color: #d9ffd9; border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.12); }
 
   #featstrip { background: #ffffff; border-bottom: 1px solid var(--border); }
   #tabs { background: #f7faf6; }
   #timebar { background: #ffffff; border-top: 1px solid var(--border); }
-  #footbar { background: #123f16; border-top: 2px solid var(--gold); color: rgba(255,255,255,0.75); }
+  #footbar { background: #B85A08; border-top: 2px solid var(--gold); color: rgba(255,255,255,0.75); }
   #footbar .lock { color: #9fdcb0; }
 
   .glass {
     background: rgba(255,255,255,0.92);
     border: 1px solid var(--border-strong);
-    box-shadow: 0 6px 20px rgba(18, 63, 22, 0.18), inset 0 1px 0 rgba(255,255,255,0.9);
+    box-shadow: 0 6px 20px rgba(184, 90, 8, 0.18), inset 0 1px 0 rgba(255,255,255,0.9);
   }
   .ccard, .rcard, .stattile, .ind, .alert, .report-row {
     box-shadow: 0 3px 12px rgba(25, 55, 32, 0.08);
@@ -563,26 +572,26 @@
   .tooltip {
     background: rgba(255,255,255,0.97); color: var(--text-primary);
     border: 1px solid var(--border-strong);
-    box-shadow: 0 10px 26px rgba(18,63,22,0.22);
+    box-shadow: 0 10px 26px rgba(184,90,8,0.22);
   }
   .modal-box {
     background: #ffffff;
-    box-shadow: 0 24px 70px rgba(18,63,22,0.35), 0 0 0 3px rgba(232,114,12,0.25);
+    box-shadow: 0 24px 70px rgba(184,90,8,0.35), 0 0 0 3px rgba(27,94,32,0.25);
   }
-  .toast { background: #ffffff; border-color: var(--esmg); color: var(--esmg-dark); box-shadow: 0 10px 26px rgba(18,63,22,0.25); }
+  .toast { background: #ffffff; border-color: var(--esmg); color: var(--esmg-dark); box-shadow: 0 10px 26px rgba(184,90,8,0.25); }
   .day { background: #ffffff; border-color: var(--border-strong); }
   .alert { background: #ffffff; }
   .alert:hover { background: #f2f7f1; }
   .report-row { background: #ffffff; }
   .report-row:hover { background: #f2f7f1; }
   table.big tr:hover td { background: #f2f7f1; }
-  .lvl.faible { background: rgba(27,94,32,0.12); color: #1b5e20; }
+  .lvl.faible { background: rgba(232,114,12,0.12); color: #E8720C; }
   #leaflet-map .leaflet-popup-content-wrapper, #leaflet-map .leaflet-popup-tip {
     background: #ffffff; color: var(--text-primary); border-color: var(--border-strong);
   }
-  .sec-title .num { background: rgba(27,94,32,0.12); border-color: rgba(27,94,32,0.45); color: #1b5e20; }
-  .feat .fi { background: rgba(27,94,32,0.1); border-color: rgba(27,94,32,0.4); }
-  #btn-run, #btn-sim { border: 1px solid rgba(232,114,12,0.55); }
+  .sec-title .num { background: rgba(232,114,12,0.12); border-color: rgba(232,114,12,0.45); color: #E8720C; }
+  .feat .fi { background: rgba(232,114,12,0.1); border-color: rgba(232,114,12,0.4); }
+  #btn-run, #btn-sim { border: 1px solid rgba(27,94,32,0.55); }
 
   /* ============================================================
      TYPOGRAPHIE « Équipe » — titres condensés majuscules + corps serif
@@ -653,11 +662,11 @@
 
   /* ================= ACCÈS TÉLÉPHONE / TABLETTE ================= */
   .mobile-toggle {
-    display: none; align-items: center; gap: 5px; background: rgba(27,94,32,0.18);
-    border: 1px solid rgba(27,94,32,0.45); color: #eafff4; border-radius: 7px;
+    display: none; align-items: center; gap: 5px; background: rgba(232,114,12,0.18);
+    border: 1px solid rgba(232,114,12,0.45); color: #eafff4; border-radius: 7px;
     padding: 7px 10px; font-size: 10.5px; font-weight: 700; cursor: pointer; white-space: nowrap; flex: none;
   }
-  .mobile-toggle:active { background: rgba(27,94,32,0.35); }
+  .mobile-toggle:active { background: rgba(232,114,12,0.35); }
   #mobile-backdrop { display: none; position: fixed; inset: 98px 0 0 0; background: rgba(4,8,14,0.55); z-index: 55; }
   #mobile-backdrop.show { display: block; }
   #role-select-mobile { display: none; }
@@ -738,7 +747,7 @@
   }
 </style>
 </head>
-<body data-palette="#1b5e20,#d95926,#199e70">
+<body data-palette="#E8720C,#d95926,#199e70" data-role="decideur">
 
 <header id="appbar">
   <div class="brand-mark"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIHJ4PSIyNiIgZmlsbD0iIzBlN2VhOCIvPjx0ZXh0IHg9IjEwMCIgeT0iODgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLHNlcmlmIiBmb250LXNpemU9IjI4IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZmZmZiI+w4lRVUlQRTwvdGV4dD48dGV4dCB4PSIxMDAiIHk9IjEyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMjIiIGZvbnQtc3R5bGU9Iml0YWxpYyIgZmlsbD0iI2YzZDY3YSI+U0VOVElORUxMRTwvdGV4dD48L3N2Zz4=" alt="Équipe Sentinelle" style="width:44px;height:44px;border-radius:10px"></div>
@@ -770,7 +779,7 @@
   <div class="feat"><div class="fi">📶</div><div><b>CONFIRMATION RADAR</b><i>Sentinel-1 SAR · insensible aux nuages</i></div></div>
   <div class="feat"><div class="fi">📡</div><div><b>RÉSEAU DE CAPTEURS IN SITU</b><i>52 stations · pH · turbidité · nappes</i></div></div>
   <div class="feat"><div class="fi">🧭</div><div><b>SIMULATION 2D/3D DES POLLUANTS</b><i>sols sédimentaires · hydrogéologie locale · saisons</i></div></div>
-  <div class="feat"><div class="fi">🚨</div><div><b>ALERTES TEMPS RÉEL</b><i>SMS / e-mail géolocalisés aux autorités</i></div></div>
+  <div class="feat"><div class="fi">🚨</div><div><b>ALERTES TEMPS RÉEL</b><i>SMS / e-mail géolocalisés aux autorités · délai &lt; 1 h après dépassement de seuil</i></div></div>
   <div class="feat"><div class="fi">🎯</div><div><b>AIDE À LA DÉCISION</b><i>priorisation des interventions terrain</i></div></div>
 </div>
 
@@ -798,7 +807,7 @@
         <option value="est">Est — Daoukro · Bondoukou</option>
       </select>
     </div>
-    <div class="coords-grid">
+    <div class="coords-grid tech-only">
       <div class="field"><label>Latitude centre</label><input type="text" value="7.5400 °N"></div>
       <div class="field"><label>Longitude centre</label><input type="text" value="-5.5500 °W"></div>
     </div>
@@ -811,15 +820,20 @@
       <select><option>01/01/2026 → 20/07/2026</option><option>30 derniers jours</option><option>Dernier passage satellite</option></select>
     </div>
 
-    <div class="sec-title"><span class="num">2</span> PARAMÈTRES DE DÉTECTION</div>
-    <div class="range-row"><label>Seuil ΔNDVI</label><input type="range" min="-40" max="-10" value="-25" id="rg-ndvi"><output id="o-ndvi">-0.25</output></div>
-    <div class="range-row"><label>Seuil ΔBSI</label><input type="range" min="5" max="25" value="10" id="rg-bsi"><output id="o-bsi">+0.10</output></div>
-    <div class="range-row"><label>Surface min.</label><input type="range" min="1" max="20" value="5" id="rg-ha"><output id="o-ha">0,5 ha</output></div>
-    <div class="field">
+    <div class="decideur-only-note">👤 Vue Décideur : les réglages techniques de détection sont pré-configurés par l'équipe opérationnelle. Passez en rôle « Opérateur régional » pour les ajuster.</div>
+    <div class="sec-title tech-only"><span class="num">2</span> PARAMÈTRES DE DÉTECTION</div>
+    <div class="range-row tech-only"><label>Seuil ΔNDVI</label><input type="range" min="-40" max="-10" value="-25" id="rg-ndvi"><output id="o-ndvi">-0.25</output></div>
+    <div class="range-row tech-only"><label>Seuil ΔBSI</label><input type="range" min="5" max="25" value="10" id="rg-bsi"><output id="o-bsi">+0.10</output></div>
+    <div class="range-row tech-only"><label>Surface min.</label><input type="range" min="1" max="20" value="5" id="rg-ha"><output id="o-ha">0,5 ha</output></div>
+    <div class="field tech-only">
       <label>Confirmation radar Sentinel-1</label>
-      <select><option>Exigée (recommandé)</option><option>Optionnelle</option><option>Désactivée</option></select>
+      <select id="sel-radar-confirm">
+        <option value="exigee" selected>Exigée (recommandé)</option>
+        <option value="optionnelle">Optionnelle</option>
+        <option value="desactivee">Désactivée</option>
+      </select>
     </div>
-    <div class="field">
+    <div class="field tech-only">
       <label>Filtre substance</label>
       <select><option>Toutes substances</option><option>Or (orpaillage)</option><option>Diamant</option><option>Manganèse</option><option>Coltan / terres rares</option></select>
     </div>
@@ -830,10 +844,11 @@
     <label class="chk"><input type="checkbox" checked data-layer="plume"><span class="swl" style="background:#8a5cd6"></span>Panaches de turbidité</label>
     <label class="chk"><input type="checkbox" checked data-layer="rivers"><span class="swl" style="background:var(--water)"></span>Réseau hydrographique</label>
     <label class="chk"><input type="checkbox" checked data-layer="permits"><span class="swl" style="background:#45c96b"></span>Permis miniers légaux</label>
-    <label class="chk"><input type="checkbox" checked data-layer="offshore" id="chk-offshore"><span class="swl" style="background:#E8720C"></span>Blocs pétroliers offshore</label>
+    <label class="chk"><input type="checkbox" checked data-layer="offshore" id="chk-offshore"><span class="swl" style="background:#1b5e20"></span>Blocs pétroliers offshore</label>
     <label class="chk"><input type="checkbox" checked data-layer="orbitg"><span class="swl" style="background:#6db4ff"></span>Trace orbitale satellite</label>
 
     <button id="btn-run">▶ LANCER L'ANALYSE</button>
+    <div id="detect-result" style="font-size:10px;color:var(--text-muted);margin-top:7px;line-height:1.5;padding:7px 9px;background:var(--inset);border-radius:8px"></div>
 
     <div class="sec-title"><span class="num">4</span> SIMULATION DE DÉVERSEMENT</div>
     <div class="field">
@@ -907,15 +922,15 @@
         <div class="field"><label>Dispersion latérale</label><select id="sim-disp"><option value="0.7">Faible (chenal étroit)</option><option value="1" selected>Moyenne</option><option value="1.4">Forte (plaine d'inondation)</option></select></div>
       </div>
     </details>
-    <div class="field"><label>Coordonnées UTM (WGS84)</label>
+    <div class="field tech-only"><label>Coordonnées UTM (WGS84)</label>
       <div class="coords-grid" style="grid-template-columns:0.6fr 1fr 1fr">
         <select id="sim-zone"><option value="29">29N</option><option value="30" selected>30N</option></select>
         <input type="text" id="sim-e" placeholder="Easting (m)" value="465600">
         <input type="text" id="sim-n" placeholder="Northing (m)" value="684350">
       </div>
     </div>
-    <button id="btn-pick" style="width:100%;margin-bottom:8px;padding:8px;border:1px dashed var(--border-strong);border-radius:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--esmg);background:var(--inset)" onclick="MW_pickPoint()">📍 CHOISIR LE POINT SUR LA CARTE</button>
-    <button id="btn-sim" onclick="MW_runSim()" style="width:100%;padding:10px;border:none;border-radius:9px;cursor:pointer;font-size:12px;font-weight:800;letter-spacing:0.8px;color:#fff;background:linear-gradient(135deg,#B85A08,#E8720C);box-shadow:0 4px 16px rgba(232,114,12,0.4)">🧪 SIMULER LA DISPERSION</button>
+    <button id="btn-pick" class="tech-only" style="width:100%;margin-bottom:8px;padding:8px;border:1px dashed var(--border-strong);border-radius:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--esmg);background:var(--inset)" onclick="MW_pickPoint()">📍 CHOISIR LE POINT SUR LA CARTE</button>
+    <button id="btn-sim" onclick="MW_runSim()" style="width:100%;padding:10px;border:none;border-radius:9px;cursor:pointer;font-size:12px;font-weight:800;letter-spacing:0.8px;color:#fff;background:linear-gradient(135deg,#123f16,#1b5e20);box-shadow:0 4px 16px rgba(27,94,32,0.4)">🧪 SIMULER LA DISPERSION</button>
 
     <div class="left-note">
       Moteur : Google Earth Engine · Sentinel-1/2 (Copernicus, ESA) · ESA WorldCover.<br>
@@ -1105,7 +1120,7 @@
 
             <!-- orbite -->
             <g id="g-orbit">
-              <path class="orbit" d="M 200 820 L 1100 -20" stroke="#1b5e20" stroke-width="1.2" opacity="0.5" fill="none"/>
+              <path class="orbit" d="M 200 820 L 1100 -20" stroke="#E8720C" stroke-width="1.2" opacity="0.5" fill="none"/>
               <circle cx="760" cy="298" r="5" fill="#6db4ff" filter="url(#glowR)"/>
               <text x="773" y="290" font-size="9.5" fill="#6db4ff">SENTINEL-2A · prochain passage 23/07 · 10:42 UTC</text>
             </g>
@@ -1125,7 +1140,7 @@
           <div class="pl-flux"><span style="color:#2e6da8;font-size:13px">➤</span> Flux de migration (sens d'écoulement)</div>
           <div class="pl-flux" style="display:flex;align-items:center;gap:7px">
             <span title="Transparence du panache : les infrastructures de l'imagerie restent visibles">☀ Opacité</span>
-            <input type="range" id="plume-alpha" min="20" max="100" value="55" style="flex:1;accent-color:#1b5e20;height:3px">
+            <input type="range" id="plume-alpha" min="20" max="100" value="55" style="flex:1;accent-color:#E8720C;height:3px">
             <span id="plume-alpha-val" style="min-width:30px;text-align:right;font-variant-numeric:tabular-nums">55%</span>
           </div>
         </div>
@@ -1237,7 +1252,7 @@
             <button class="day cmp-site" style="flex:none;padding:6px 14px" data-site="TOR-11">TOR-11 · Tortiya</button>
             <button class="day cmp-site" style="flex:none;padding:6px 14px" data-site="SEG-02">SEG-02 · Séguéla</button>
             <button class="day cmp-site" style="flex:none;padding:6px 14px" data-site="ITY-05">ITY-05 · Zouan-Hounien</button>
-            <span style="margin-left:auto;font-size:10px;color:var(--text-muted)">Export : <span id="btn-export-png" style="color:#1b5e20;font-weight:700;cursor:pointer">PNG géoréférencé ⬇</span> · <span id="btn-export-fiche" style="color:#1b5e20;font-weight:700;cursor:pointer">Fiche PDF ⬇</span></span>
+            <span style="margin-left:auto;font-size:10px;color:var(--text-muted)">Export : <span id="btn-export-png" style="color:#E8720C;font-weight:700;cursor:pointer">PNG géoréférencé ⬇</span> · <span id="btn-export-fiche" style="color:#E8720C;font-weight:700;cursor:pointer">Fiche PDF ⬇</span></span>
           </div>
         </div>
       </div>
@@ -1298,7 +1313,7 @@
             <tr><td>DKR-01 · Daoukro</td><td>N'zi</td><td class="num">6,8</td><td class="num">55 NTU</td><td class="num">240 µS</td><td class="num">95%</td><td class="num">il y a 6 min</td><td><span class="lvl ok">NORMALE</span></td></tr>
             <tr><td>ITY-01 · Zouan-Hounien</td><td>Cavally</td><td class="num">—</td><td class="num">—</td><td class="num">—</td><td class="num">12%</td><td class="num">21/07 · 04:15</td><td><span class="lvl faible">HORS LIGNE</span></td></tr>
           </table>
-          <div style="margin-top:8px;font-size:10px;color:var(--text-muted)">+ 45 autres stations · <span style="color:#1b5e20;font-weight:700;cursor:pointer">voir tout le réseau →</span></div>
+          <div style="margin-top:8px;font-size:10px;color:var(--text-muted)">+ 45 autres stations · <span style="color:#E8720C;font-weight:700;cursor:pointer">voir tout le réseau →</span></div>
         </div>
       </div>
     </div>
@@ -1307,7 +1322,7 @@
     <div class="view" id="tab-cadastre">
       <div class="subview">
         <div class="statgrid">
-          <div class="stattile" style="--tile-accent:#1b5e20"><div class="label">Titres miniers actifs</div><div class="value">142</div><div class="delta">permis + autorisations</div></div>
+          <div class="stattile" style="--tile-accent:#E8720C"><div class="label">Titres miniers actifs</div><div class="value">142</div><div class="delta">permis + autorisations</div></div>
           <div class="stattile" style="--tile-accent:#45c96b"><div class="label">Conformité d'emprise</div><div class="value">87<span class="unit">%</span></div><div class="delta ok">audit satellite mensuel</div></div>
           <div class="stattile" style="--tile-accent:#fab219"><div class="label">Écarts détectés</div><div class="value">9</div><div class="delta bad">avertissements émis</div></div>
           <div class="stattile" style="--tile-accent:#8a5cd6"><div class="label">Réhabilitations suivies</div><div class="value">14</div><div class="delta">revégétalisation vérifiée par NDVI</div></div>
@@ -1326,7 +1341,19 @@
             <tr><td>AE-771 Katiola</td><td>Coopérative minière CKN</td><td>Or (semi-mécanisé)</td><td>Hambol</td><td class="num">12 km²</td><td class="num" style="color:var(--st-critical);font-weight:700">+8,7%</td><td><span class="lvl critique">MISE EN DEMEURE</span></td></tr>
             <tr><td>AE-802 Divo</td><td>Coopérative Espoir</td><td>Or (semi-mécanisé)</td><td>Lôh-Djiboua</td><td class="num">9 km²</td><td class="num">+0,8%</td><td><span class="lvl ok">EN RÈGLE</span></td></tr>
           </table>
-          <div style="margin-top:8px;font-size:10px;color:var(--text-muted)">+ 134 autres titres · <span style="color:#1b5e20;font-weight:700;cursor:pointer">registre complet →</span> · source périmètres : Cadastre Minier (à raccorder via API)</div>
+          <div style="margin-top:8px;font-size:10px;color:var(--text-muted)">+ 134 autres titres · <span style="color:#E8720C;font-weight:700;cursor:pointer">registre complet →</span> · source périmètres : Cadastre Minier (à raccorder via API)</div>
+        </div>
+        <div class="ccard">
+          <h3>🛢 BLOCS PÉTROLIERS OFFSHORE — suivi des installations</h3>
+          <div class="sub">Champs en production/développement au large de la Côte d'Ivoire · position et statut vérifiés par imagerie satellite (détection de nappes)</div>
+          <table class="big">
+            <tr><th>Installation</th><th>Opérateur</th><th>Statut</th><th>Détection de nappe (30 j)</th><th>Conformité</th></tr>
+            <tr><td>FPSO Baleine (CI-101)</td><td>Eni</td><td>Production</td><td class="num">0 événement</td><td><span class="lvl ok">EN RÈGLE</span></td></tr>
+            <tr><td>Calao (CI-205)</td><td>Eni</td><td>En développement</td><td class="num">0 événement</td><td><span class="lvl ok">EN RÈGLE</span></td></tr>
+            <tr><td>FPSO Espoir Ivoirien (CI-40)</td><td>CNR / PETROCI</td><td>Production</td><td class="num">0 événement</td><td><span class="lvl ok">EN RÈGLE</span></td></tr>
+            <tr><td>FPSO Baobab (CI-40)</td><td>MODEC</td><td>Production</td><td class="num">1 sheen mineur (résorbé)</td><td><span class="lvl faible">SOUS SURVEILLANCE</span></td></tr>
+          </table>
+          <div style="margin-top:8px;font-size:10px;color:var(--text-muted)">Détection radar Sentinel-1 (nappes d'hydrocarbures en surface) · méthode alignée CleanSeaNet/SkyTruth Cerulean · source blocs : DGH/PETROCI (à raccorder via API)</div>
         </div>
         <div class="ccard">
           <h3>🌱 SUIVI DES RÉHABILITATIONS — obligation de fermeture</h3>
@@ -1357,6 +1384,7 @@
                   <span class="op-step done">Qualification</span><span class="op-arrow">→</span>
                   <span class="op-step done">Notification</span><span class="op-arrow">→</span>
                   <span class="op-step active">Prise en charge</span><span class="op-arrow">→</span>
+                  <span class="op-step">Validation experte</span><span class="op-arrow">→</span>
                   <span class="op-step">Clôture</span>
                 </div>
               </div>
@@ -1372,6 +1400,7 @@
                   <span class="op-step done">Qualification</span><span class="op-arrow">→</span>
                   <span class="op-step active">Notification</span><span class="op-arrow">→</span>
                   <span class="op-step">Prise en charge</span><span class="op-arrow">→</span>
+                  <span class="op-step">Validation experte</span><span class="op-arrow">→</span>
                   <span class="op-step">Clôture</span>
                 </div>
               </div>
@@ -1387,6 +1416,7 @@
                   <span class="op-step active">Qualification</span><span class="op-arrow">→</span>
                   <span class="op-step">Notification</span><span class="op-arrow">→</span>
                   <span class="op-step">Prise en charge</span><span class="op-arrow">→</span>
+                  <span class="op-step">Validation experte</span><span class="op-arrow">→</span>
                   <span class="op-step">Clôture</span>
                 </div>
               </div>
@@ -1419,7 +1449,8 @@
               <tr><td>Unité hydrologique CIAPOL Bouaké</td><td><span class="lvl ok">DISPONIBLE</span></td><td class="num">1 h 20</td></tr>
               <tr><td>Cellule ANDE Yamoussoukro</td><td><span class="lvl moyen">EN INTERVENTION</span></td><td class="num">2 h 10</td></tr>
             </table>
-            <button onclick="MW_declencherIntervention()" style="width:100%;padding:9px;border:none;border-radius:8px;cursor:pointer;font-size:11px;font-weight:800;letter-spacing:0.5px;color:#fff;background:linear-gradient(135deg,#123f16,#1b5e20)">🚨 DÉCLENCHER LE PLAN D'INTERVENTION</button>
+            <button onclick="MW_declencherIntervention()" style="width:100%;padding:9px;border:none;border-radius:8px;cursor:pointer;font-size:11px;font-weight:800;letter-spacing:0.5px;color:#fff;background:linear-gradient(135deg,#B85A08,#E8720C)">🚨 DÉCLENCHER LE PLAN D'INTERVENTION</button>
+            <button id="btn-valider-expert" onclick="MW_validerExpert()" style="display:none;width:100%;margin-top:8px;padding:9px;border:1px solid var(--border-strong);border-radius:8px;cursor:pointer;font-size:11px;font-weight:800;letter-spacing:0.5px;color:var(--esmg);background:var(--inset)">🖊 VALIDATION EXPERTE — CONFIRMER LA CLÔTURE DU DOSSIER</button>
           </div>
 
           <h3 style="font-size:11.5px;font-weight:800;margin-bottom:10px">🚨 FIL D'ALERTES NATIONAL — 30 DERNIERS JOURS</h3>
@@ -1487,8 +1518,9 @@
         <div class="statgrid">
           <div class="stattile" style="--tile-accent:#d03b3b"><div class="label">Sites actifs (national)</div><div class="value" data-count="312">0</div><div class="delta bad">▲ +38 ce trimestre</div></div>
           <div class="stattile" style="--tile-accent:#ec835a"><div class="label">Surface impactée</div><div class="value"><span data-count="2450">0</span> <span class="unit">ha</span></div><div class="delta bad">▲ +204 ha vs T1</div></div>
-          <div class="stattile" style="--tile-accent:#1b5e20"><div class="label">Interventions réussies</div><div class="value" data-count="47">0</div><div class="delta ok">depuis janvier 2026</div></div>
+          <div class="stattile" style="--tile-accent:#E8720C"><div class="label">Interventions réussies</div><div class="value" data-count="47">0</div><div class="delta ok">depuis janvier 2026</div></div>
           <div class="stattile" style="--tile-accent:#199e70"><div class="label">Délai moyen de détection</div><div class="value"><span data-count="11">0</span> <span class="unit">jours</span></div><div class="delta ok">▼ vs 3–5 ans sans suivi</div></div>
+          <div class="stattile" style="--tile-accent:#2a78d6"><div class="label">Délai d'alerte après seuil dépassé</div><div class="value">&lt; 1 <span class="unit">h</span></div><div class="delta ok">✓ notification SMS/e-mail automatique aux autorités</div></div>
           <div class="stattile" style="--tile-accent:#fab219"><div class="label">Captages protégés</div><div class="value" data-count="26">0</div><div class="delta">alertes préventives émises</div></div>
         </div>
         <div class="ccard">
@@ -1510,7 +1542,7 @@
             <div class="stattile" style="--tile-accent:#45c96b"><div class="label">Conformité des permis</div><div class="value">91<span class="unit">%</span></div><div class="delta ok">142 titres audités</div><div class="dq mesure">MESURÉ · 96%</div></div>
             <div class="stattile" style="--tile-accent:#2a78d6"><div class="label">Inspections réalisées</div><div class="value">85<span class="unit">%</span></div><div class="delta">objectif trimestriel 90%</div><div class="dq declare">DÉCLARÉ · 88%</div></div>
             <div class="stattile" style="--tile-accent:#fab219"><div class="label">Actions correctives ouvertes</div><div class="value">14</div><div class="delta bad">dont 3 prioritaires</div><div class="dq mesure">MESURÉ · 100%</div></div>
-            <div class="stattile" style="--tile-accent:#1b5e20"><div class="label">Actions correctives clôturées</div><div class="value">52</div><div class="delta ok">depuis janvier 2026</div><div class="dq mesure">MESURÉ · 100%</div></div>
+            <div class="stattile" style="--tile-accent:#E8720C"><div class="label">Actions correctives clôturées</div><div class="value">52</div><div class="delta ok">depuis janvier 2026</div><div class="dq mesure">MESURÉ · 100%</div></div>
           </div>
         </div>
         <div class="ccard">
@@ -1519,19 +1551,19 @@
           <div style="display:flex;gap:8px;align-items:stretch;flex-wrap:wrap">
             <div style="flex:1;min-width:130px;background:var(--inset);border:1px solid var(--border);border-radius:9px;padding:10px 11px;text-align:center">
               <div style="font-size:17px">🛰</div><div style="font-size:10px;font-weight:800;margin:4px 0 2px">1. ACQUISITION</div><div style="font-size:9px;color:var(--text-muted)">Sentinel-1/2 · tous les 5 jours · gratuit</div></div>
-            <div style="align-self:center;color:#1b5e20;font-weight:800">→</div>
+            <div style="align-self:center;color:#E8720C;font-weight:800">→</div>
             <div style="flex:1;min-width:130px;background:var(--inset);border:1px solid var(--border);border-radius:9px;padding:10px 11px;text-align:center">
               <div style="font-size:17px">🧠</div><div style="font-size:10px;font-weight:800;margin:4px 0 2px">2. ANALYSE IA</div><div style="font-size:9px;color:var(--text-muted)">détection de changement NDVI/BSI</div></div>
-            <div style="align-self:center;color:#1b5e20;font-weight:800">→</div>
+            <div style="align-self:center;color:#E8720C;font-weight:800">→</div>
             <div style="flex:1;min-width:130px;background:var(--inset);border:1px solid var(--border);border-radius:9px;padding:10px 11px;text-align:center">
               <div style="font-size:17px">📡</div><div style="font-size:10px;font-weight:800;margin:4px 0 2px">3. CONFIRMATION</div><div style="font-size:9px;color:var(--text-muted)">radar S1 + capteurs eau in situ</div></div>
-            <div style="align-self:center;color:#1b5e20;font-weight:800">→</div>
+            <div style="align-self:center;color:#E8720C;font-weight:800">→</div>
             <div style="flex:1;min-width:130px;background:var(--inset);border:1px solid var(--border);border-radius:9px;padding:10px 11px;text-align:center">
               <div style="font-size:17px">🚨</div><div style="font-size:10px;font-weight:800;margin:4px 0 2px">4. ALERTE</div><div style="font-size:9px;color:var(--text-muted)">SMS géolocalisé + fiche PDF</div></div>
-            <div style="align-self:center;color:#1b5e20;font-weight:800">→</div>
+            <div style="align-self:center;color:#E8720C;font-weight:800">→</div>
             <div style="flex:1;min-width:130px;background:var(--inset);border:1px solid var(--border);border-radius:9px;padding:10px 11px;text-align:center">
               <div style="font-size:17px">🚔</div><div style="font-size:10px;font-weight:800;margin:4px 0 2px">5. INTERVENTION</div><div style="font-size:9px;color:var(--text-muted)">brigade guidée · accusé de réception</div></div>
-            <div style="align-self:center;color:#1b5e20;font-weight:800">→</div>
+            <div style="align-self:center;color:#E8720C;font-weight:800">→</div>
             <div style="flex:1;min-width:130px;background:var(--inset);border:1px solid var(--border);border-radius:9px;padding:10px 11px;text-align:center">
               <div style="font-size:17px">🌱</div><div style="font-size:10px;font-weight:800;margin:4px 0 2px">6. SUIVI</div><div style="font-size:9px;color:var(--text-muted)">revégétalisation vérifiée par NDVI</div></div>
           </div>
@@ -1655,7 +1687,7 @@
         <div class="ind" style="--ind-accent:#2e7fc2"><div class="il">🌧 Précipitations 7 j</div><div class="iv" id="rp-pluie">156 <span class="iu">mm</span></div></div>
         <div class="ind" style="--ind-accent:#71816f"><div class="il">💨 Vitesse du vent</div><div class="iv" id="rp-vent">4,2 <span class="iu">m/s</span></div></div>
         <div class="ind" style="--ind-accent:#5bb8ff"><div class="il">💧 Écoulement nappe</div><div class="iv" id="rp-nappe">0,28 <span class="iu">m/j</span></div></div>
-        <div class="ind" style="--ind-accent:#E8720C"><div class="il">🪨 Perméabilité du sol</div><div class="iv" id="rp-perm" style="font-size:13.5px;line-height:1.6">Moyenne</div></div>
+        <div class="ind" style="--ind-accent:#1b5e20"><div class="il">🪨 Perméabilité du sol</div><div class="iv" id="rp-perm" style="font-size:13.5px;line-height:1.6">Moyenne</div></div>
       </div>
     </div>
 
@@ -1663,7 +1695,7 @@
     <div class="ind-grid">
       <div class="ind" style="--ind-accent:#d03b3b"><div class="il">Sites actifs</div><div class="iv" data-count="312">0</div><div class="id2 bad">▲ +38 ce trimestre</div><div class="dq mesure" title="Compté depuis les détections satellite confirmées radar">MESURÉ · 96%</div></div>
       <div class="ind" style="--ind-accent:#ec835a"><div class="il">Surface impactée</div><div class="iv"><span data-count="2450">0</span> <span class="iu">ha</span></div><div class="id2 bad">▲ +204 ha vs T1</div><div class="dq calcule" title="Calculé par cumul des polygones de sites détectés">CALCULÉ · 90%</div></div>
-      <div class="ind" style="--ind-accent:#1b5e20"><div class="il">Stations en ligne</div><div class="iv"><span data-count="48">0</span><span class="iu">/52</span></div><div class="id2">4 en maintenance</div><div class="dq mesure" title="Télémétrie directe des stations ESP32">MESURÉ · 99%</div></div>
+      <div class="ind" style="--ind-accent:#E8720C"><div class="il">Stations en ligne</div><div class="iv"><span data-count="48">0</span><span class="iu">/52</span></div><div class="id2">4 en maintenance</div><div class="dq mesure" title="Télémétrie directe des stations ESP32">MESURÉ · 99%</div></div>
       <div class="ind" style="--ind-accent:#fab219"><div class="il">Alertes · 7 j</div><div class="iv" data-count="0">0</div><div class="id2 ok">aucune alerte active</div><div class="dq mesure" title="Une absence d'alerte n'est jamais assimilée à un zéro non vérifié : confirmée par bulletin quotidien">MESURÉ · 100%</div></div>
       <div class="ind" style="--ind-accent:#199e70"><div class="il">Délai de détection</div><div class="iv"><span data-count="11">0</span> <span class="iu">j</span></div><div class="id2 ok">▼ vs 3–5 ans sans suivi</div><div class="dq calcule" title="Moyenne calculée sur les cas confirmés 2026">CALCULÉ · 88%</div></div>
       <div class="ind" style="--ind-accent:#8a5cd6"><div class="il">Précipitations 7 j</div><div class="iv"><span data-count="156">0</span> <span class="iu">mm</span></div><div class="id2">saison des pluies</div><div class="dq declare" title="Source : service météo national, agrégé par bassin">DÉCLARÉ · 85%</div></div>
@@ -1683,7 +1715,7 @@
   <span class="sep">|</span>
   <span>Sentinelle CI — Prototype SIREXE Hackathon 2026 · données de démonstration simulées</span>
   <span class="sep">|</span>
-  <span style="color:#FDB44B;font-weight:800">BUILD MOBILE-09</span>
+  <span style="color:#72D679;font-weight:800">BUILD MOBILE-09</span>
 </footer>
 
 <script>
@@ -1731,6 +1763,17 @@
   bindRange('rg-ndvi', 'o-ndvi', function (v) { return (v / 100).toFixed(2); });
   bindRange('rg-bsi', 'o-bsi', function (v) { return '+' + (v / 100).toFixed(2); });
   bindRange('rg-ha', 'o-ha', function (v) { return (v / 10).toFixed(1).replace('.', ',') + ' ha'; });
+  /* les seuils de détection et la confirmation radar recalculent réellement les sites qui
+     correspondent aux critères — voir window.MW_recomputeDetection (défini avec SITES_GEO) */
+  ['rg-ndvi', 'rg-bsi', 'rg-ha'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('input', function () { if (typeof window.MW_recomputeDetection === 'function') window.MW_recomputeDetection(); });
+  });
+  var radarConfirmEl = document.getElementById('sel-radar-confirm');
+  if (radarConfirmEl) radarConfirmEl.addEventListener('change', function () {
+    if (typeof window.MW_recomputeDetection === 'function') window.MW_recomputeDetection();
+    if (typeof window.MW_toast === 'function') window.MW_toast('📶 Confirmation radar : ' + radarConfirmEl.options[radarConfirmEl.selectedIndex].text);
+  });
 
   /* ================= couches ================= */
   var layerMap = { sites: 'g-sites', stations: 'g-stations', plume: 'g-plume', rivers: 'g-rivers', permits: 'g-permits', orbitg: 'g-orbit' };
@@ -1824,7 +1867,12 @@
     setDay(0);
     var i = 0;
     var run = setInterval(function () { i++; if (i >= DAYS7.length) { clearInterval(run); return; } setDay(i); }, 500);
+    if (typeof window.MW_recomputeDetection === 'function') {
+      var res = window.MW_recomputeDetection();
+      if (res && typeof window.MW_toast === 'function') window.MW_toast('▶ Analyse relancée : ' + res.matched + '/' + res.total + ' sites correspondent aux critères actuels');
+    }
   });
+  if (typeof window.MW_recomputeDetection === 'function') window.MW_recomputeDetection();
 
   /* ================= comparateur avant/après ================= */
   var cmp = document.getElementById('compare');
@@ -2201,6 +2249,7 @@
   window.MW_setRole = function (role) {
     var r = MW_ROLES[role] || MW_ROLES.decideur;
     window.MW_currentRole = role;
+    document.body.dataset.role = role;
     var lbl = document.getElementById('user-role-label'), sub = document.getElementById('user-role-sub'), av = document.getElementById('user-avatar');
     if (lbl) lbl.textContent = r.label;
     if (sub) sub.textContent = r.sub;
@@ -2249,18 +2298,38 @@
     var steps = document.querySelectorAll('#op-panel .op-item.critique .op-step');
     steps.forEach(function (s) {
       if (s.textContent.trim() === 'Prise en charge') { s.classList.remove('active'); s.classList.add('done'); }
+      if (s.textContent.trim() === 'Validation experte') { s.classList.add('active'); }
+    });
+    if (typeof window.MW_showValidationBtn === 'function') window.MW_showValidationBtn();
+    toast('✅ Recommandation appliquée — plan d\'intervention déclenché, brigade DR Mines Divo notifiée · en attente de validation experte');
+  };
+
+  window.MW_showValidationBtn = function () {
+    var vBtn = document.getElementById('btn-valider-expert');
+    if (vBtn && !vBtn.disabled) vBtn.style.display = 'block';
+  };
+
+  window.MW_validerExpert = function () {
+    var r = MW_ROLES[window.MW_currentRole] || MW_ROLES.decideur;
+    if (window.MW_currentRole === 'public') { toast('⛔ Validation réservée aux rôles habilités — rôle actuel : ' + r.label); return; }
+    var steps = document.querySelectorAll('#op-panel .op-item.critique .op-step');
+    steps.forEach(function (s) {
+      if (s.textContent.trim() === 'Validation experte') { s.classList.remove('active'); s.classList.add('done'); }
       if (s.textContent.trim() === 'Clôture') { s.classList.add('active'); }
     });
-    toast('✅ Recommandation appliquée — plan d\'intervention déclenché, brigade DR Mines Divo notifiée');
+    var vBtn = document.getElementById('btn-valider-expert');
+    if (vBtn) { vBtn.disabled = true; vBtn.textContent = '✅ Validé par ' + r.label; }
+    toast('🖊 Dossier validé par un expert habilité (' + r.label + ') — clôture du dossier HIR-02');
   };
 
   window.MW_declencherIntervention = function () {
     if (typeof window.MW_downloadFiche === 'function') window.MW_downloadFiche();
-    toast('🚨 Plan d\'intervention déclenché — fiche transmise à la Brigade DR Mines Divo');
+    toast('🚨 Plan d\'intervention déclenché — fiche transmise à la Brigade DR Mines Divo · en attente de validation experte');
+    if (typeof window.MW_showValidationBtn === 'function') window.MW_showValidationBtn();
     var steps = document.querySelectorAll('#op-panel .op-item.critique .op-step');
     steps.forEach(function (s) {
       if (s.textContent.trim() === 'Prise en charge') { s.classList.remove('active'); s.classList.add('done'); }
-      if (s.textContent.trim() === 'Clôture') { s.classList.add('active'); }
+      if (s.textContent.trim() === 'Validation experte') { s.classList.add('active'); }
     });
   };
 
@@ -2332,7 +2401,27 @@
 
   /* ---------- CONTENUS DES RAPPORTS ---------- */
   var DOCS = {
-    fiche: function () {
+    fiche: function (site) {
+      /* HIR-02 est le cas documenté en détail pour la démo ; pour tout autre site
+         sélectionné dans le comparateur, on génère une fiche réelle à partir des
+         données du site (SITES_GEO) plutôt que de renvoyer par erreur la fiche HIR-02. */
+      if (site && site.id !== 'HIR-02') {
+        var stLabel = { confirme: 'CONFIRMÉ (optique Sentinel-2 + radar Sentinel-1)', suspect: 'SUSPECT — confirmation radar Sentinel-1 en attente', a_verifier: 'À VÉRIFIER — signal faible, confirmation requise' };
+        var subLabel = { or: 'or (orpaillage)', diamant: 'diamant', manganese: 'manganèse' };
+        return makePdf('FICHE DE CONTROLE PREVENTIF - SITE ' + site.id + ' (' + site.name.toUpperCase() + ')', 'Generee automatiquement le 20/07/2026 - Diffusion : DR Mines, Brigade miniere',
+          [H('1. IDENTIFICATION DU SITE'),
+           B('Code site : ' + site.id + '  -  Statut : ' + (stLabel[site.st] || site.st.toUpperCase())),
+           B('Coordonnees : ' + site.lat.toFixed(4) + ' N, ' + site.lon.toFixed(4) + ' W  -  Substance : ' + (subLabel[site.sub] || site.sub)),
+           B('Surface detectee : ' + String(site.ha).replace('.', ',') + ' ha (Sentinel-2, 10 m/pixel)'),
+           H('2. SITUATION ENVIRONNEMENTALE'),
+           B('Stations de suivi les plus proches : voir onglet Eaux & Capteurs - reseau Sentinelle-Hydro.'),
+           B(site.st === 'confirme' ? 'Detection confirmee par radar Sentinel-1 (insensible a la couverture nuageuse).' : 'Detection optique seule a ce stade - confirmation radar Sentinel-1 en attente avant qualification definitive.'),
+           H('3. POPULATIONS ET RESSOURCES EXPOSEES'),
+           B('A determiner par l\'equipe terrain a partir des captages et localites du bassin versant concerne.'),
+           H('4. ACTIONS DEMANDEES'),
+           B('1. Verification terrain dans les delais standards Sentinelle ; 2. Confirmation radar si statut non confirme ;'),
+           B('3. Mise a jour du dossier de suivi apres visite.')]);
+      }
       return makePdf('FICHE DE CONTROLE PREVENTIF - SITE HIR-02 (HIRE)', 'Generee automatiquement le 20/07/2026 a 06:42 - Diffusion : Prefet de Divo, Brigade miniere, DR Mines',
         [H('1. IDENTIFICATION DU SITE'),
          B('Code site : HIR-02  -  Statut : CONFIRME (optique Sentinel-2 + radar Sentinel-1)'),
@@ -2423,6 +2512,44 @@
     { id: 'BDK-01', name: 'Bondoukou', st: 'a_verifier', sub: 'manganese', ha: 2.2, lat: 8.0402, lon: -2.8104 },
     { id: 'OUM-01', name: 'Oume', st: 'a_verifier', sub: 'or', ha: 1.9, lat: 6.3831, lon: -5.4170 }
   ];
+  window.SITES_GEO = SITES_GEO;
+  window.MW_siteMarkers = window.MW_siteMarkers || {};
+
+  /* ---------- PARAMÈTRES DE DÉTECTION → recalcul réel des sites qui passent les seuils ----------
+     Relie les curseurs ΔNDVI/ΔBSI/surface min. et le sélecteur « Confirmation radar Sentinel-1 »
+     (panneau gauche, section 2) à un résultat concret : nombre de sites qui correspondent aux
+     critères actuels, et estompage sur la carte HD des sites qui ne les remplissent plus. */
+  window.MW_recomputeDetection = function () {
+    var ndviEl = document.getElementById('rg-ndvi'), bsiEl = document.getElementById('rg-bsi'),
+        haEl = document.getElementById('rg-ha'), radarEl = document.getElementById('sel-radar-confirm'),
+        note = document.getElementById('detect-result');
+    if (!ndviEl || !bsiEl || !haEl) return null;
+    var minHa = parseFloat(haEl.value) / 10;
+    var sensNdvi = (parseFloat(ndviEl.value) + 40) / 30;  /* -40 (strict) … -10 (sensible) → 0..1 */
+    var sensBsi = (25 - parseFloat(bsiEl.value)) / 20;     /* 25 (strict) … 5 (sensible) → 0..1 */
+    var sensitivity = (sensNdvi + sensBsi) / 2;
+    var radarMode = radarEl ? radarEl.value : 'exigee';
+    var pool = radarMode === 'exigee' ? ['confirme']
+      : radarMode === 'optionnelle' ? ['confirme', 'suspect']
+      : ['confirme', 'suspect', 'a_verifier'];
+    if (sensitivity < 0.3 && pool.indexOf('a_verifier') === -1) pool = ['confirme']; /* seuils très stricts : ne garder que le confirmé */
+    var matched = 0, pending = 0;
+    SITES_GEO.forEach(function (s) {
+      var sizeOk = s.ha >= minHa, ok = sizeOk && pool.indexOf(s.st) !== -1;
+      if (ok) matched++;
+      if (sizeOk && s.st !== 'confirme' && pool.indexOf(s.st) === -1) pending++;
+      var m = window.MW_siteMarkers[s.id];
+      if (m && m.getElement) { var el = m.getElement(); if (el) el.style.opacity = ok ? '1' : '0.25'; }
+    });
+    if (note) {
+      note.innerHTML = '<b>' + matched + '</b> site' + (matched > 1 ? 's' : '') + ' sur ' + SITES_GEO.length + ' correspondent aux critères actuels'
+        + (pending > 0 ? ' · <span style="color:var(--st-warn)">' + pending + ' en attente de confirmation radar</span>' : '')
+        + ' · seuil surface ≥ ' + minHa.toFixed(1).replace('.', ',') + ' ha.';
+    }
+    return { matched: matched, total: SITES_GEO.length, pending: pending };
+  };
+  window.MW_recomputeDetection();
+
   function geojsonBlob() {
     var fc = {
       type: 'FeatureCollection',
@@ -2503,7 +2630,7 @@
       var ctx = cv.getContext('2d');
       ctx.drawImage(img, 0, 0, 1600, 800);
       ctx.fillStyle = 'rgba(7,11,18,0.85)'; ctx.fillRect(0, 760, 1600, 40);
-      ctx.fillStyle = '#1b5e20'; ctx.font = '18px Georgia, serif';
+      ctx.fillStyle = '#E8720C'; ctx.font = '18px Georgia, serif';
       var site = document.querySelector('.cmp-site.on').getAttribute('data-site');
       var g = SITES_GEO.filter(function (s) { return s.id === site; })[0] || SITES_GEO[0];
       ctx.fillText('Sentinelle CI · ' + site + ' · ' + g.lat.toFixed(4) + ' N, ' + g.lon.toFixed(4) + ' W · EPSG:4326 · Sentinel-2 (Copernicus/ESA) · 10 m/pixel', 20, 786);
@@ -2512,8 +2639,11 @@
     img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(xml);
   });
   document.getElementById('btn-export-fiche').addEventListener('click', function () {
-    download('Sentinelle_Fiche_Intervention_HIR-02.pdf', DOCS.fiche());
-    toast('📄 Fiche PDF du site générée');
+    var siteBtn = document.querySelector('.cmp-site.on');
+    var siteId = siteBtn ? siteBtn.getAttribute('data-site') : 'HIR-02';
+    var g = SITES_GEO.filter(function (s) { return s.id === siteId; })[0] || SITES_GEO[0];
+    download('Sentinelle_Fiche_Intervention_' + g.id + '.pdf', DOCS.fiche(g));
+    toast('📄 Fiche PDF du site ' + g.id + ' générée');
   });
 
   /* ---------- COMPARATEUR : imagerie satellite réelle du site ---------- */
@@ -2570,7 +2700,7 @@
       var tbl = document.querySelector('#tab-eaux table.big');
       if (expandedS) {
         tbl.querySelectorAll('tr.gen').forEach(function (r) { r.remove(); });
-        eauxNote.innerHTML = '+ 45 autres stations · <span style="color:#1b5e20;font-weight:700;cursor:pointer">voir tout le réseau →</span>';
+        eauxNote.innerHTML = '+ 45 autres stations · <span style="color:#E8720C;font-weight:700;cursor:pointer">voir tout le réseau →</span>';
         expandedS = false; return;
       }
       var rnd = lcg(20260720);
@@ -2588,7 +2718,7 @@
         html += '<tr class="gen"><td>' + b + '-' + num + '</td><td>' + rivers[i % rivers.length] + '</td><td class="num">' + ph + '</td><td class="num">' + ntu + ' NTU</td><td class="num">' + ec + ' µS</td><td class="num">' + bat + '%</td><td class="num">il y a ' + mins + ' min</td><td><span class="lvl ok">NORMALE</span></td></tr>';
       }
       tbl.insertAdjacentHTML('beforeend', html);
-      eauxNote.innerHTML = '<span style="color:#1b5e20;font-weight:700;cursor:pointer">▲ réduire la liste</span> · 52 stations affichées';
+      eauxNote.innerHTML = '<span style="color:#E8720C;font-weight:700;cursor:pointer">▲ réduire la liste</span> · 52 stations affichées';
       expandedS = true;
       toast('📡 Réseau complet affiché — 52 stations');
     });
@@ -2601,7 +2731,7 @@
       var tbl = document.querySelector('#tab-cadastre table.big');
       if (expandedP) {
         tbl.querySelectorAll('tr.gen').forEach(function (r) { r.remove(); });
-        permNote.innerHTML = '+ 134 autres titres · <span style="color:#1b5e20;font-weight:700;cursor:pointer">registre complet →</span> · source périmètres : Cadastre Minier (à raccorder via API)';
+        permNote.innerHTML = '+ 134 autres titres · <span style="color:#E8720C;font-weight:700;cursor:pointer">registre complet →</span> · source périmètres : Cadastre Minier (à raccorder via API)';
         expandedP = false; return;
       }
       var rnd = lcg(777);
@@ -2619,7 +2749,7 @@
         html += '<tr class="gen"><td>' + typ + '-' + num + '</td><td>' + socs[i] + '</td><td>' + subs[i % subs.length] + '</td><td>' + regs[i] + '</td><td class="num">' + km + ' km²</td><td class="num">' + ecart + '</td><td>' + statut + '</td></tr>';
       }
       tbl.insertAdjacentHTML('beforeend', html);
-      permNote.innerHTML = '<span style="color:#1b5e20;font-weight:700;cursor:pointer">▲ réduire le registre</span> · 20 titres affichés sur 142';
+      permNote.innerHTML = '<span style="color:#E8720C;font-weight:700;cursor:pointer">▲ réduire le registre</span> · 20 titres affichés sur 142';
       expandedP = true;
       toast('⛏ Registre étendu affiché');
     });
@@ -2798,13 +2928,15 @@
         L.polygon(ring(r0 * 0.55, 0.35, idx + 3), { stroke: false, fillColor: '#a8845c', fillOpacity: 0.85 }).addTo(leafletMap).bindPopup(popup);
         L.polygon(ring(r0 * 0.22, 0.3, idx + 7), { stroke: false, fillColor: '#3d6f8a', fillOpacity: 0.85 }).addTo(leafletMap).bindPopup(popup); /* bassin d'eau */
       }
-      L.marker([s.lat, s.lon], {
+      var siteMarker = L.marker([s.lat, s.lon], {
         icon: L.divIcon({
           className: '', iconSize: [30, 30], iconAnchor: [15, 15],
           html: '<div class="mine-marker" style="--mc:' + col + '"><span class="mine-pulse"></span><span class="mine-badge">⛏</span><span class="mine-lbl">' + s.id + '</span></div>'
         })
       }).addTo(leafletMap).bindPopup(popup);
+      window.MW_siteMarkers[s.id] = siteMarker;
     });
+    if (typeof window.MW_recomputeDetection === 'function') window.MW_recomputeDetection();
     var STATIONS = [
       { id: 'BFL-01 · amont Marahoué', lat: 7.08, lon: -5.78, alert: false },
       { id: 'HIR-02 · aval Hiré', lat: 6.15, lon: -5.30, alert: false },
@@ -2851,11 +2983,11 @@
     var offshoreGroup = L.layerGroup();
     OFFSHORE_FIELDS.forEach(function (f2) {
       L.rectangle([[f2.lat - 0.12, f2.lon - 0.16], [f2.lat + 0.12, f2.lon + 0.16]], {
-        color: '#E8720C', weight: 1.8, dashArray: '8 6', fillColor: '#E8720C', fillOpacity: 0.06
+        color: '#1b5e20', weight: 1.8, dashArray: '8 6', fillColor: '#1b5e20', fillOpacity: 0.06
       }).addTo(offshoreGroup).bindPopup('<b>🛢 ' + f2.n + '</b><br>' + f2.d);
       L.marker([f2.lat, f2.lon], {
         icon: L.divIcon({ className: '', iconSize: [30, 30], iconAnchor: [15, 15],
-          html: '<div class="mine-marker" style="--mc:#E8720C"><span class="mine-pulse"></span><span class="mine-badge">🛢</span><span class="mine-lbl">' + f2.n.split(' (')[0] + '</span></div>' })
+          html: '<div class="mine-marker" style="--mc:#1b5e20"><span class="mine-pulse"></span><span class="mine-badge">🛢</span><span class="mine-lbl">' + f2.n.split(' (')[0] + '</span></div>' })
       }).addTo(offshoreGroup).bindPopup('<b>🛢 ' + f2.n + '</b><br>' + f2.d + '<br><span style="opacity:0.7">Surveillance Sentinelle : nappe de surface, colonne d\'eau, fond marin</span>');
     });
     offshoreGroup.addTo(leafletMap);
@@ -3496,9 +3628,9 @@
         s2 += '<rect x="0" y="26" width="340" height="122" fill="url(#mer3d)"/>';
         /* nappe de surface (slick) */
         s2 += '<ellipse cx="150" cy="28" rx="62" ry="4.5" fill="#1a1208" opacity="0.9"/>';
-        s2 += '<text x="86" y="40" font-size="8" fill="#FDB44B">nappe de surface (dérive : courant + vent)</text>';
+        s2 += '<text x="86" y="40" font-size="8" fill="#72D679">nappe de surface (dérive : courant + vent)</text>';
         /* FPSO */
-        s2 += '<rect x="60" y="18" width="34" height="9" rx="2" fill="#E8720C"/><text x="60" y="14" font-size="7.5" fill="#FDB44B">FPSO</text>';
+        s2 += '<rect x="60" y="18" width="34" height="9" rx="2" fill="#1b5e20"/><text x="60" y="14" font-size="7.5" fill="#72D679">FPSO</text>';
         s2 += '<line x1="77" y1="27" x2="77" y2="148" stroke="#8a8a8a" stroke-width="1.4" stroke-dasharray="3 3"/>';
         /* panache dans la colonne d\'eau, dévié par le courant */
         s2 += '<path class="plume-pulse" d="M150 30 C 158 60, 176 90, 205 116 C 226 134, 252 144, 272 148 L 210 150 C 180 122, 160 84, 148 30 Z" fill="url(#plm3d)"/>';
@@ -3606,7 +3738,7 @@
       '<div style="font-size:11px;font-weight:700;margin:12px 0 6px;letter-spacing:0.5px">🎛 ANALYSE DE SENSIBILITÉ — SCÉNARIOS MULTIPLES</div>' +
       '<table class="big"><tr><th>Scénario</th><th>Front à J+' + durJ + '</th><th>Conc. au front</th><th>Risque</th></tr>' + sensRows + '</table>' +
       '<div style="display:flex;gap:10px;margin-top:14px;align-items:center;flex-wrap:wrap">' +
-      '<button onclick="MW_exportEIE()" style="padding:9px 16px;border:none;border-radius:8px;cursor:pointer;font-size:11.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,#123f16,#1b5e20)">📄 EXPORTER LE RAPPORT EIE (PDF)</button>' +
+      '<button onclick="MW_exportEIE()" style="padding:9px 16px;border:none;border-radius:8px;cursor:pointer;font-size:11.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,#B85A08,#E8720C)">📄 EXPORTER LE RAPPORT EIE (PDF)</button>' +
       '<span style="font-size:10px;color:var(--text-muted)">Conforme EIES Côte d\'Ivoire · normes IFC PS1/PS3/PS4 · NES 3 Banque mondiale</span></div>' +
       '<div style="margin-top:10px;font-size:10.5px;color:var(--text-muted)">Lecteur J1→J7 sous la carte : animation jour par jour. Modèle advection-dispersion 2D + coupe 3D — prototype ; le produit final intégrera MODFLOW/MT3D (nappes) et un modèle hydraulique 1D calé (rivières).</div>');
     /* -------- mise à jour du panneau RÉSULTATS — SCÉNARIO SÉLECTIONNÉ -------- */
@@ -3860,7 +3992,7 @@
       var titre = name.replace(/^[^A-Za-zÀ-ÿ0-9]+/, '');
       modal(titre, '<div class="msub">' + info + '</div>' +
         (SITE_DETECT_GEO[code]
-          ? '<button onclick="MW_simulateSite(\'' + code + '\')" style="width:100%;padding:10px;border:none;border-radius:9px;cursor:pointer;font-size:12px;font-weight:800;letter-spacing:0.6px;color:#fff;background:linear-gradient(135deg,#B85A08,#E8720C)">🧪 SIMULER L\'IMPACT ICI</button><div style="margin-top:7px;font-size:9.5px;color:var(--text-muted)">Pré-remplit le simulateur de dispersion (coordonnées, milieu, volume estimé) à partir du contexte de ce site — étape suivante : « constater → anticiper ».</div>'
+          ? '<button onclick="MW_simulateSite(\'' + code + '\')" style="width:100%;padding:10px;border:none;border-radius:9px;cursor:pointer;font-size:12px;font-weight:800;letter-spacing:0.6px;color:#fff;background:linear-gradient(135deg,#123f16,#1b5e20)">🧪 SIMULER L\'IMPACT ICI</button><div style="margin-top:7px;font-size:9.5px;color:var(--text-muted)">Pré-remplit le simulateur de dispersion (coordonnées, milieu, volume estimé) à partir du contexte de ce site — étape suivante : « constater → anticiper ».</div>'
           : '<div style="font-size:10px;color:var(--text-muted)">Simulation non disponible pour ce point.</div>'));
     });
   });
@@ -3880,7 +4012,7 @@
 })();
 </script>
 
-<div id="ccOv" style="display:none;position:fixed;left:0;top:0;right:0;bottom:0;z-index:9000;background:#04101d"><div style="position:absolute;top:0;left:0;right:0;height:46px;display:flex;align-items:center;gap:12px;padding:0 16px;background:#1b5e20;color:#fff"><b style="font-size:13px">🌍 CarbonConnect CI — volet carbone SENTINELLE</b><span style="font-size:10px;opacity:.8">MRV · GIEC 2006/2019 · Accord de Paris art. 6.2/6.4 · CDN 2030 · registre national des crédits</span><span style="margin-left:auto"></span><button onclick="ccFull()" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:7px;padding:5px 11px;cursor:pointer;font-size:11px">⛶ Plein écran</button><button onclick="ccClose()" style="background:#fff;color:#1b5e20;border:0;border-radius:7px;padding:5px 12px;cursor:pointer;font-weight:700;font-size:11px">✕ Fermer</button></div><div id="ccHold" data-sd="&lt;!DOCTYPE html>
+<div id="ccOv" style="display:none;position:fixed;left:0;top:0;right:0;bottom:0;z-index:9000;background:#04101d"><div style="position:absolute;top:0;left:0;right:0;height:46px;display:flex;align-items:center;gap:12px;padding:0 16px;background:#E8720C;color:#fff"><b style="font-size:13px">🌍 CarbonConnect CI — volet carbone SENTINELLE</b><span style="font-size:10px;opacity:.8">MRV · GIEC 2006/2019 · Accord de Paris art. 6.2/6.4 · CDN 2030 · registre national des crédits</span><span style="margin-left:auto"></span><button onclick="ccFull()" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.35);border-radius:7px;padding:5px 11px;cursor:pointer;font-size:11px">⛶ Plein écran</button><button onclick="ccClose()" style="background:#fff;color:#E8720C;border:0;border-radius:7px;padding:5px 12px;cursor:pointer;font-weight:700;font-size:11px">✕ Fermer</button></div><div id="ccHold" data-sd="&lt;!DOCTYPE html>
 &lt;html lang=&quot;fr&quot;>
 &lt;head>
 &lt;meta charset=&quot;utf-8&quot;>
