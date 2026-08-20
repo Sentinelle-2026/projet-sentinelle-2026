@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Sentinelle CI — Plateforme nationale de surveillance des sites miniers et pétroliers</title>
+<!-- ===== Progressive Web App : installation sur écran d'accueil (voir manifest.webmanifest et sw.js) ===== -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#E8720C">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SENTINELLE CI">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
@@ -64,10 +73,17 @@
   }
   .brand { font-size: 16px; font-weight: 800; letter-spacing: 0.3px; white-space: nowrap; }
   .brand .accent { background: var(--accent-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  /* le sous-titre est décoratif et parfois long : il tronque avec "…" plutôt que de forcer
-     toute la barre du haut à s'élargir (sinon il pousse le menu et le rôle hors de l'écran) */
+  /* le sous-titre est décoratif et parfois long : plutôt que de le tronquer avec "…" (perte
+     d'info) ou de forcer la barre du haut à s'élargir (pousse le menu hors écran), il défile
+     doucement en boucle quand il ne tient pas dans l'espace disponible — voir MW_initAppTitleMarquee */
   .app-title { font-size: 10px; color: var(--text-secondary); letter-spacing: 1.6px; text-transform: uppercase;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    white-space: nowrap; overflow: hidden; position: relative; }
+  .app-title-track { display: inline-flex; white-space: nowrap; }
+  .app-title-seg { padding-right: 44px; }
+  .app-title-track .app-title-seg:last-child { display: none; }
+  .app-title.marquee .app-title-track { animation: app-title-scroll linear infinite; }
+  .app-title.marquee .app-title-track .app-title-seg:last-child { display: inline; }
+  @keyframes app-title-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
   /* l'appbar ne doit JAMAIS pousser le rôle/horloge/avatar hors de l'écran : le menu du
      milieu (Tableau de bord/Projets/Cartes...) est l'élément qui cède — il rétrécit et
      défile horizontalement si besoin, à n'importe quelle largeur de fenêtre, pas
@@ -76,8 +92,13 @@
   #appbar { flex-wrap: nowrap; }
   .brand-mark { flex: none; }
   #appbar > div:nth-child(2) { flex: 1 1 auto; min-width: 0; max-width: 340px; overflow: hidden; }
-  #appmenu { display: flex; gap: 2px; margin-left: 10px; flex: 1 1 0; min-width: 90px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  #appmenu::-webkit-scrollbar { display: none; }
+  /* Menu horizontal (Tableau de bord/Projets/Cartes/.../Carbone) : le défilement doit
+     être visible pour quelqu'un qui découvre l'interface — un scrollbar caché ne
+     signale à personne qu'il y a d'autres éléments à faire défiler. */
+  #appmenu { display: flex; gap: 2px; margin-left: 10px; flex: 1 1 0; min-width: 90px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.35) transparent; padding-bottom: 3px; }
+  #appmenu::-webkit-scrollbar { height: 5px; }
+  #appmenu::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.35); border-radius: 3px; }
+  #appmenu::-webkit-scrollbar-track { background: rgba(255,255,255,0.06); border-radius: 3px; }
   #appmenu span { padding: 6px 12px; border-radius: 7px; font-size: 11.5px; color: var(--text-secondary); cursor: pointer; white-space: nowrap; }
   #appmenu span:hover { background: rgba(120,170,230,0.1); color: var(--text-primary); }
   #appmenu span.on { background: rgba(232,114,12,0.18); color: #E8720C; font-weight: 700; }
@@ -90,8 +111,13 @@
   .live .dot { width: 7px; height: 7px; border-radius: 50%; background: #2fdf4f; box-shadow: 0 0 9px #2fdf4f; animation: pulse 1.6s ease-in-out infinite; }
   @keyframes pulse { 0%,100% { opacity: 1;} 50% { opacity: 0.4;} }
   .clock { font-size: 11px; color: var(--text-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .user-chip { display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--text-secondary); border-left: 1px solid var(--border); padding-left: 12px; white-space: nowrap; }
-  .user-chip .avatar { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg,#199e70,#0d5e42); display: grid; place-items: center; font-size: 11px; font-weight: 800; color: #eafff4; }
+  /* espace réduit pour laisser plus de place à la barre de menu : le nom de ministère
+     et sa légende sont tronqués avec « … » plutôt que de pousser le menu hors champ ;
+     l'intitulé complet reste disponible en survol (title). */
+  .user-chip { display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--text-secondary); border-left: 1px solid var(--border); padding-left: 12px; white-space: nowrap; max-width: 150px; flex: none; }
+  .user-chip .avatar { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg,#199e70,#0d5e42); display: grid; place-items: center; font-size: 11px; font-weight: 800; color: #eafff4; flex: none; }
+  .user-chip > div { min-width: 0; overflow: hidden; }
+  .user-chip > div span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
   /* ================= BANDEAU FONCTIONNALITÉS ================= */
   #featstrip {
@@ -670,14 +696,19 @@
   #mobile-backdrop { display: none; position: fixed; inset: 98px 0 0 0; background: rgba(4,8,14,0.55); z-index: 55; }
   #mobile-backdrop.show { display: block; }
   #role-select-mobile { display: none; }
-  #btn-toggle-carbone { display: none; }
+  /* Le bouton Carbone doit rester accessible en un clic quelle que soit la largeur
+     d'écran : la bande de menu horizontale (Tableau de bord/Projets/.../Carbone) déborde
+     dès ~1600px et masque "Carbone" sans que ce soit évident qu'il faille la faire défiler.
+     (règle précédente : display:none — le bouton était donc invisible en permanence, y
+     compris sur mobile où il était pourtant prévu.) */
+  #btn-toggle-carbone { display: inline-flex !important; }
 
   @media (max-width: 1100px) {
     .mobile-toggle { display: inline-flex; }
     .app-title, .clock, .live { display: none; }
     #appbar { gap: 6px; padding: 0 8px; }
     #appmenu { flex: 1 1 0; min-width: 60px; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-left: 2px; }
-    #appmenu::-webkit-scrollbar { display: none; }
+    #appmenu::-webkit-scrollbar { height: 4px; }
     #appmenu span { padding: 6px 8px; }
     .appbar-right { flex: none; gap: 6px; }
     .mobile-toggle { padding: 7px 8px; font-size: 10px; }
@@ -753,15 +784,16 @@
   <div class="brand-mark"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyMDAiIHJ4PSIyNiIgZmlsbD0iIzBlN2VhOCIvPjx0ZXh0IHg9IjEwMCIgeT0iODgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLHNlcmlmIiBmb250LXNpemU9IjI4IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0iI2ZmZmZmZiI+w4lRVUlQRTwvdGV4dD48dGV4dCB4PSIxMDAiIHk9IjEyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9Ikdlb3JnaWEsc2VyaWYiIGZvbnQtc2l6ZT0iMjIiIGZvbnQtc3R5bGU9Iml0YWxpYyIgZmlsbD0iI2YzZDY3YSI+U0VOVElORUxMRTwvdGV4dD48L3N2Zz4=" alt="Équipe Sentinelle" style="width:44px;height:44px;border-radius:10px"></div>
   <div>
     <div class="brand">SENTI<span class="accent">NELLE</span> CI</div>
-    <div class="app-title">Plateforme nationale de surveillance des sites miniers et pétroliers · Équipe Sentinelle</div>
+    <div class="app-title" id="app-title"><span class="app-title-track" id="app-title-track"><span class="app-title-seg">Plateforme nationale de surveillance des sites miniers et pétroliers · Équipe Sentinelle</span><span class="app-title-seg" aria-hidden="true">Plateforme nationale de surveillance des sites miniers et pétroliers · Équipe Sentinelle</span></span></div>
   </div>
   <nav id="appmenu">
-    <span class="on" data-menu="dash">⌂ Tableau de bord</span><span data-menu="projets">▤ Projets</span><span data-menu="cartes">🗺 Cartes</span><span data-menu="rapports">▦ Rapports</span><span data-menu="carbone" onclick="ccOpen()">🌍 Carbone</span><span data-menu="aide">? Aide</span><span data-menu="params">⚙ Paramètres</span>
+    <span class="on" data-menu="dash">⌂ Tableau de bord</span><span data-menu="projets">▤ Projets</span><span data-menu="cartes">🗺 Cartes</span><span data-menu="rapports">▦ Rapports</span><span data-menu="aide">? Aide</span><span data-menu="params">⚙ Paramètres</span>
   </nav>
   <div class="appbar-right">
-    <button class="mobile-toggle" id="btn-toggle-carbone" onclick="ccOpen()" aria-label="Ouvrir le volet Carbone">🌍</button>
+    <button class="mobile-toggle" id="btn-toggle-carbone" onclick="ccOpen()" aria-label="Ouvrir le volet Carbone">🌍 Carbone</button>
     <button class="mobile-toggle" id="btn-toggle-left" onclick="MW_toggleDrawer('left')" aria-label="Ouvrir les filtres et la zone de surveillance">☰ Filtres</button>
     <button class="mobile-toggle" id="btn-toggle-right" onclick="MW_toggleDrawer('right')" aria-label="Ouvrir le panneau d'analyse et d'alertes">📋 Analyse</button>
+    <button class="mobile-toggle" id="btn-toggle-more" onclick="MW_openMoreMenu()" aria-label="Plus : Tableau de bord, Projets, Aide, Paramètres">⋯ Plus</button>
     <span class="live"><span class="dot"></span>SURVEILLANCE ACTIVE</span>
     <select id="role-select" class="role-select" onchange="MW_setRole(this.value); var rm=document.getElementById('role-select-mobile'); if(rm) rm.value=this.value;" title="Sélecteur de rôle — adapte les vues et les habilitations">
       <option value="decideur" selected>👤 Décideur — MMPE</option>
@@ -770,7 +802,7 @@
       <option value="public">🌐 Public</option>
     </select>
     <span class="clock" id="clock">—</span>
-    <div class="user-chip" id="user-chip"><div class="avatar" id="user-avatar">MN</div><div><span id="user-role-label">Ministère des Mines — DGMG</span><br><span style="color:var(--text-muted);font-size:9.5px" id="user-role-sub">Accès national · niveau 1 · habilité à appliquer les recommandations</span></div></div>
+    <div class="user-chip" id="user-chip" title="Ministère des Mines, du Pétrole et de l'Énergie — DGMG · Accès national · niveau 1 · habilité à appliquer les recommandations"><div class="avatar" id="user-avatar">MN</div><div><span id="user-role-label">Ministère des Mines — DGMG</span><br><span style="color:var(--text-muted);font-size:9.5px" id="user-role-sub">Accès national · niveau 1 · habilité à appliquer les recommandations</span></div></div>
   </div>
 </header>
 
@@ -813,11 +845,11 @@
     </div>
     <div class="field">
       <label>Période de référence (baseline)</label>
-      <select><option>Année 2024 (médiane annuelle)</option><option>Année 2025</option><option>Dernier trimestre</option></select>
+      <select id="sel-baseline"><option>Année 2024 (médiane annuelle)</option><option>Année 2025</option><option>Dernier trimestre</option></select>
     </div>
     <div class="field">
       <label>Période analysée</label>
-      <select><option>01/01/2026 → 20/07/2026</option><option>30 derniers jours</option><option>Dernier passage satellite</option></select>
+      <select id="sel-periode"><option>01/01/2026 → 20/07/2026</option><option>30 derniers jours</option><option>Dernier passage satellite</option></select>
     </div>
 
     <div class="decideur-only-note">👤 Vue Décideur : les réglages techniques de détection sont pré-configurés par l'équipe opérationnelle. Passez en rôle « Opérateur régional » pour les ajuster.</div>
@@ -835,7 +867,13 @@
     </div>
     <div class="field tech-only">
       <label>Filtre substance</label>
-      <select><option>Toutes substances</option><option>Or (orpaillage)</option><option>Diamant</option><option>Manganèse</option><option>Coltan / terres rares</option></select>
+      <select id="sel-substance">
+        <option value="">Toutes substances</option>
+        <option value="or">Or (orpaillage)</option>
+        <option value="diamant">Diamant</option>
+        <option value="manganese">Manganèse</option>
+        <option value="coltan">Coltan / terres rares</option>
+      </select>
     </div>
 
     <div class="sec-title"><span class="num">3</span> COUCHES AFFICHÉES</div>
@@ -2254,6 +2292,8 @@
     if (lbl) lbl.textContent = r.label;
     if (sub) sub.textContent = r.sub;
     if (av) av.textContent = r.avatar;
+    var chip = document.getElementById('user-chip');
+    if (chip) chip.title = r.label + ' · ' + r.sub;
     var appBtn = document.getElementById('reco-app-btn');
     if (appBtn) {
       appBtn.disabled = !r.canApply;
@@ -2262,10 +2302,35 @@
     toast('👤 Rôle actif : ' + r.label + ' — vues adaptées aux habilitations');
   };
 
+  var OP_OPEN_COORDS = {
+    'PE-058': { latlon: [6.86, -8.10], label: 'PE-058 Ity — permis minier légal (Ity Mining SA), audit satellite d\'emprise' }
+  };
   window.MW_opOpen = function (siteId) {
     var tabCarte = document.querySelector('.tab[data-view="tab-carte"]');
     if (tabCarte) tabCarte.click();
-    toast('↗ Ouverture du dossier ' + siteId + ' sur la carte nationale');
+    var s = (typeof SITES_GEO !== 'undefined') ? SITES_GEO.filter(function (x) { return x.id === siteId; })[0] : null;
+    var known = OP_OPEN_COORDS[siteId];
+    var latlon = s ? [s.lat, s.lon] : (known ? known.latlon : null);
+    var label = s ? (s.id + ' · ' + s.name) : (known ? known.label : siteId);
+    if (siteId === 'HIR-02') {
+      toast('↗ Ouverture du dossier ' + label + ' sur la carte nationale');
+      return;
+    }
+    if (latlon) {
+      toast('↗ Ouverture du dossier ' + label + ' — bascule sur SATELLITE HD pour localisation précise');
+      setTimeout(function () {
+        if (!hdActive && typeof activateHD === 'function') activateHD();
+        setTimeout(function () {
+          if (leafletMap) {
+            leafletMap.setView(latlon, 11);
+            var m = window.MW_siteMarkers && window.MW_siteMarkers[siteId];
+            if (m && m.openPopup) m.openPopup();
+          }
+        }, 350);
+      }, 150);
+    } else {
+      toast('↗ Ouverture du dossier ' + siteId + ' sur la carte nationale');
+    }
   };
 
   window.MW_recoSimuler = function () {
@@ -2522,6 +2587,7 @@
   window.MW_recomputeDetection = function () {
     var ndviEl = document.getElementById('rg-ndvi'), bsiEl = document.getElementById('rg-bsi'),
         haEl = document.getElementById('rg-ha'), radarEl = document.getElementById('sel-radar-confirm'),
+        subEl = document.getElementById('sel-substance'), periodeEl = document.getElementById('sel-periode'),
         note = document.getElementById('detect-result');
     if (!ndviEl || !bsiEl || !haEl) return null;
     var minHa = parseFloat(haEl.value) / 10;
@@ -2529,26 +2595,44 @@
     var sensBsi = (25 - parseFloat(bsiEl.value)) / 20;     /* 25 (strict) … 5 (sensible) → 0..1 */
     var sensitivity = (sensNdvi + sensBsi) / 2;
     var radarMode = radarEl ? radarEl.value : 'exigee';
+    var subFilter = subEl ? subEl.value : '';
     var pool = radarMode === 'exigee' ? ['confirme']
       : radarMode === 'optionnelle' ? ['confirme', 'suspect']
       : ['confirme', 'suspect', 'a_verifier'];
     if (sensitivity < 0.3 && pool.indexOf('a_verifier') === -1) pool = ['confirme']; /* seuils très stricts : ne garder que le confirmé */
     var matched = 0, pending = 0;
     SITES_GEO.forEach(function (s) {
-      var sizeOk = s.ha >= minHa, ok = sizeOk && pool.indexOf(s.st) !== -1;
+      var subOk = !subFilter || s.sub === subFilter;
+      var sizeOk = s.ha >= minHa, ok = subOk && sizeOk && pool.indexOf(s.st) !== -1;
       if (ok) matched++;
-      if (sizeOk && s.st !== 'confirme' && pool.indexOf(s.st) === -1) pending++;
+      if (subOk && sizeOk && s.st !== 'confirme' && pool.indexOf(s.st) === -1) pending++;
       var m = window.MW_siteMarkers[s.id];
-      if (m && m.getElement) { var el = m.getElement(); if (el) el.style.opacity = ok ? '1' : '0.25'; }
+      if (m && m.getElement) { var el = m.getElement(); if (el) el.style.opacity = ok ? '1' : (subOk ? '0.25' : '0.08'); }
     });
     if (note) {
       note.innerHTML = '<b>' + matched + '</b> site' + (matched > 1 ? 's' : '') + ' sur ' + SITES_GEO.length + ' correspondent aux critères actuels'
         + (pending > 0 ? ' · <span style="color:var(--st-warn)">' + pending + ' en attente de confirmation radar</span>' : '')
-        + ' · seuil surface ≥ ' + minHa.toFixed(1).replace('.', ',') + ' ha.';
+        + ' · seuil surface ≥ ' + minHa.toFixed(1).replace('.', ',') + ' ha.'
+        + (subFilter ? ' · substance : ' + subEl.options[subEl.selectedIndex].text + '.' : '')
+        + (periodeEl ? ' · période analysée : ' + periodeEl.options[periodeEl.selectedIndex].text + '.' : '');
     }
     return { matched: matched, total: SITES_GEO.length, pending: pending };
   };
   window.MW_recomputeDetection();
+  var subSelEl = document.getElementById('sel-substance');
+  if (subSelEl) subSelEl.addEventListener('change', function () {
+    window.MW_recomputeDetection();
+    if (typeof window.MW_toast === 'function') window.MW_toast('🧪 Filtre substance : ' + subSelEl.options[subSelEl.selectedIndex].text);
+  });
+  var periodeSelEl = document.getElementById('sel-periode');
+  if (periodeSelEl) periodeSelEl.addEventListener('change', function () {
+    window.MW_recomputeDetection();
+    if (typeof window.MW_toast === 'function') window.MW_toast('🗓 Période analysée mise à jour : ' + periodeSelEl.options[periodeSelEl.selectedIndex].text);
+  });
+  var baselineSelEl = document.getElementById('sel-baseline');
+  if (baselineSelEl) baselineSelEl.addEventListener('change', function () {
+    if (typeof window.MW_toast === 'function') window.MW_toast('📐 Baseline de référence : ' + baselineSelEl.options[baselineSelEl.selectedIndex].text + ' — NDVI/BSI recalculés par rapport à cette période.');
+  });
 
   function geojsonBlob() {
     var fc = {
@@ -2805,6 +2889,39 @@
     });
   });
 
+  /* Sur mobile/tablette, le menu du haut (#appmenu) est masqué faute de place — sans ce
+     bouton, « Tableau de bord », « Projets », « Aide » et « Paramètres » deviennent
+     injoignables (Cartes/Rapports restent accessibles via les onglets principaux). */
+  window.MW_moreAction = function (key) {
+    var a = menuActions[key];
+    if (a) a();
+  };
+  window.MW_openMoreMenu = function () {
+    modal('⋯ Plus', '<div class="msub">Autres sections</div>' +
+      '<div style="display:flex;flex-direction:column;gap:8px">' +
+      '<button class="reco-btn-exam" style="width:100%;text-align:left" onclick="this.closest(\'.modal-overlay\').remove();MW_moreAction(\'dash\');">⌂ Tableau de bord</button>' +
+      '<button class="reco-btn-exam" style="width:100%;text-align:left" onclick="this.closest(\'.modal-overlay\').remove();MW_moreAction(\'projets\');">▤ Projets</button>' +
+      '<button class="reco-btn-exam" style="width:100%;text-align:left" onclick="this.closest(\'.modal-overlay\').remove();MW_moreAction(\'aide\');">? Aide</button>' +
+      '<button class="reco-btn-exam" style="width:100%;text-align:left" onclick="this.closest(\'.modal-overlay\').remove();MW_moreAction(\'params\');">⚙ Paramètres</button>' +
+      '</div>');
+  };
+
+  /* Sous-titre défilant : on ne l'active que s'il ne tient réellement pas dans l'espace
+     disponible (sinon le texte reste simplement statique, sans animation superflue). */
+  window.MW_initAppTitleMarquee = function () {
+    var el = document.getElementById('app-title'), seg = el && el.querySelector('.app-title-seg');
+    if (!el || !seg) return;
+    var overflowing = seg.scrollWidth > el.clientWidth + 2;
+    el.classList.toggle('marquee', overflowing);
+    if (overflowing) {
+      var pxPerSecond = 26;
+      var track = document.getElementById('app-title-track');
+      if (track) track.style.animationDuration = Math.max(6, (seg.scrollWidth + 44) / pxPerSecond) + 's';
+    }
+  };
+  window.addEventListener('load', function () { setTimeout(window.MW_initAppTitleMarquee, 50); });
+  window.addEventListener('resize', function () { clearTimeout(window._mwTitleRz); window._mwTitleRz = setTimeout(window.MW_initAppTitleMarquee, 200); });
+
   /* ---------- ALERTES CLIQUABLES → zoom carte ---------- */
   var alertZones = ['sud', 'nord', 'centre', 'nord', 'sud', 'est', 'centre'];
   document.querySelectorAll('#tab-alerts .alert').forEach(function (al, i) {
@@ -2834,6 +2951,7 @@
   });
   var svgMap = document.getElementById('map');
   var migLayers = [];
+  var plumeVisible = true;
   var MIG_PATH = [[6.1907, -5.3225], [6.12, -5.28], [6.03, -5.22], [5.92, -5.15], [5.78, -5.08], [5.62, -5.02], [5.45, -4.98], [5.28, -4.99], [5.13, -5.02]];
   var MIG_COLORS = ['#d03b3b', '#e0512f', '#ec835a', '#f5a12b', '#fab219', '#c9c92a', '#8ec93f', '#45c96b'];
 
@@ -2907,7 +3025,12 @@
     loadRealRivers();          /* grands fleuves réels (Natural Earth) — rapides à charger */
     setTimeout(loadOsmRivers, 50); /* réseau complet réel avec affluents (OpenStreetMap) — en parallèle */
 
-    /* ---- mines matérialisées : emprise d'excavation + marqueur pulsant ---- */
+    /* ---- mines matérialisées : emprise d'excavation + marqueur pulsant ----
+       regroupées dans sitesGroupLf pour que la case « Sites détectés » du panneau
+       gauche agisse aussi sur la carte HD (Leaflet), pas seulement sur la carte
+       tactique SVG. */
+    var sitesGroupLf = L.layerGroup().addTo(leafletMap);
+    window.MW_sitesGroupLf = sitesGroupLf;
     var stColor = { confirme: '#d03b3b', suspect: '#ec835a', a_verifier: '#fab219' };
     var stLabel = { confirme: 'CONFIRMÉ', suspect: 'SUSPECT', a_verifier: 'À VÉRIFIER' };
     SITES_GEO.forEach(function (s, idx) {
@@ -2924,19 +3047,21 @@
       }
       var popup = '<b>⛏ ' + s.id + ' · ' + s.name + '</b><br>Statut : <b style="color:' + col + '">' + stLabel[s.st] + '</b><br>Substance : ' + s.sub + ' · Surface : ' + String(s.ha).replace('.', ',') + ' ha<br>' + s.lat.toFixed(4) + ' N, ' + s.lon.toFixed(4) + ' W<br><span style="opacity:0.7">Détection Sentinel-2 + confirmation Sentinel-1</span>';
       if (s.st !== 'a_verifier') {
-        L.polygon(ring(r0, 0.28, idx), { color: '#5c4630', weight: 1.5, fillColor: '#8a6f52', fillOpacity: 0.72 }).addTo(leafletMap).bindPopup(popup);
-        L.polygon(ring(r0 * 0.55, 0.35, idx + 3), { stroke: false, fillColor: '#a8845c', fillOpacity: 0.85 }).addTo(leafletMap).bindPopup(popup);
-        L.polygon(ring(r0 * 0.22, 0.3, idx + 7), { stroke: false, fillColor: '#3d6f8a', fillOpacity: 0.85 }).addTo(leafletMap).bindPopup(popup); /* bassin d'eau */
+        L.polygon(ring(r0, 0.28, idx), { color: '#5c4630', weight: 1.5, fillColor: '#8a6f52', fillOpacity: 0.72 }).addTo(sitesGroupLf).bindPopup(popup);
+        L.polygon(ring(r0 * 0.55, 0.35, idx + 3), { stroke: false, fillColor: '#a8845c', fillOpacity: 0.85 }).addTo(sitesGroupLf).bindPopup(popup);
+        L.polygon(ring(r0 * 0.22, 0.3, idx + 7), { stroke: false, fillColor: '#3d6f8a', fillOpacity: 0.85 }).addTo(sitesGroupLf).bindPopup(popup); /* bassin d'eau */
       }
       var siteMarker = L.marker([s.lat, s.lon], {
         icon: L.divIcon({
           className: '', iconSize: [30, 30], iconAnchor: [15, 15],
           html: '<div class="mine-marker" style="--mc:' + col + '"><span class="mine-pulse"></span><span class="mine-badge">⛏</span><span class="mine-lbl">' + s.id + '</span></div>'
         })
-      }).addTo(leafletMap).bindPopup(popup);
+      }).addTo(sitesGroupLf).bindPopup(popup);
       window.MW_siteMarkers[s.id] = siteMarker;
     });
     if (typeof window.MW_recomputeDetection === 'function') window.MW_recomputeDetection();
+    var stationsGroupLf = L.layerGroup().addTo(leafletMap);
+    window.MW_stationsGroupLf = stationsGroupLf;
     var STATIONS = [
       { id: 'BFL-01 · amont Marahoué', lat: 7.08, lon: -5.78, alert: false },
       { id: 'HIR-02 · aval Hiré', lat: 6.15, lon: -5.30, alert: false },
@@ -2950,7 +3075,7 @@
       L.circleMarker([st.lat, st.lon], {
         radius: 7, color: '#0a1019', weight: 2,
         fillColor: st.off ? '#6d7a8c' : (st.alert ? '#d95926' : '#2a78d6'), fillOpacity: 1
-      }).addTo(leafletMap).bindPopup('<b>📡 Station ' + st.id + '</b><br>Réseau capteurs Sentinelle — mesure toutes les 15 min');
+      }).addTo(stationsGroupLf).bindPopup('<b>📡 Station ' + st.id + '</b><br>Réseau capteurs Sentinelle — mesure toutes les 15 min');
     });
     /* permis miniers légaux : périmètre + bouton ⛏ de la mine CENTRÉ sur le permis */
     var permitsGroup = L.layerGroup();
@@ -2996,6 +3121,45 @@
     if (chkOff) chkOff.addEventListener('change', function () {
       if (this.checked) offshoreGroup.addTo(leafletMap); else leafletMap.removeLayer(offshoreGroup);
     });
+
+    /* ---- trace orbitale satellite (équivalent Leaflet de #g-orbit) ---- */
+    var orbitGroupLf = L.layerGroup().addTo(leafletMap);
+    window.MW_orbitGroupLf = orbitGroupLf;
+    L.polyline([[4.15, -8.85], [10.85, -2.45]], {
+      color: '#E8720C', weight: 1.6, opacity: 0.6, dashArray: '10 8'
+    }).addTo(orbitGroupLf);
+    L.marker([6.75, -6.55], {
+      icon: L.divIcon({ className: '', iconSize: [10, 10], iconAnchor: [5, 5], html: '<div style="width:10px;height:10px;border-radius:50%;background:#6db4ff;box-shadow:0 0 8px 2px #6db4ff"></div>' })
+    }).addTo(orbitGroupLf).bindPopup('<b>🛰 SENTINEL-2A</b><br>Trace orbitale — prochain passage 23/07 · 10:42 UTC');
+
+    /* ---- cases « COUCHES AFFICHÉES » : rendre les cases fonctionnelles aussi
+       en mode SATELLITE HD, pas seulement sur la carte tactique SVG ---- */
+    var chkSites = document.querySelector('input[data-layer="sites"]');
+    if (chkSites) chkSites.addEventListener('change', function () {
+      if (this.checked) sitesGroupLf.addTo(leafletMap); else leafletMap.removeLayer(sitesGroupLf);
+    });
+    var chkStations = document.querySelector('input[data-layer="stations"]');
+    if (chkStations) chkStations.addEventListener('change', function () {
+      if (this.checked) stationsGroupLf.addTo(leafletMap); else leafletMap.removeLayer(stationsGroupLf);
+    });
+    var chkRivers = document.querySelector('input[data-layer="rivers"]');
+    if (chkRivers) chkRivers.addEventListener('change', function () {
+      if (this.checked) { if (!leafletMap.hasLayer(riversGroup)) riversGroup.addTo(leafletMap); }
+      else if (leafletMap.hasLayer(riversGroup)) leafletMap.removeLayer(riversGroup);
+    });
+    var chkOrbit = document.querySelector('input[data-layer="orbitg"]');
+    if (chkOrbit) chkOrbit.addEventListener('change', function () {
+      if (this.checked) orbitGroupLf.addTo(leafletMap); else leafletMap.removeLayer(orbitGroupLf);
+    });
+    var chkPlume = document.querySelector('input[data-layer="plume"]');
+    if (chkPlume) chkPlume.addEventListener('change', function () {
+      plumeVisible = this.checked;
+      migLayers.forEach(function (l) {
+        if (plumeVisible) { if (!leafletMap.hasLayer(l)) l.addTo(leafletMap); }
+        else if (leafletMap.hasLayer(l)) leafletMap.removeLayer(l);
+      });
+    });
+
     drawMigration(6);
     leafletMap.on('mousemove', function (e) {
       document.getElementById('coords-hud').textContent = e.latlng.lat.toFixed(4) + ' N · ' + e.latlng.lng.toFixed(4) + ' W';
@@ -3291,6 +3455,8 @@
       })
     }).addTo(leafletMap).bindPopup('<b>💧 ' + srcName + '</b><br>' + src[0].toFixed(4) + ' N, ' + src[1].toFixed(4) + ' W<br>' + opts.pollLabel);
     layers.push(sm);
+    /* respecte l'état de la case « Panaches de turbidité » même après un redessin */
+    if (!plumeVisible) layers.forEach(function (l) { leafletMap.removeLayer(l); });
   }
 
   /* panache permanent du site HIR-02, animé par le lecteur J1-J7 */
@@ -5363,7 +5529,18 @@ INIT.ia=function(){
     &lt;td class=&quot;n&quot;>${l[2]}&lt;/td>&lt;td class=&quot;n&quot; style=&quot;color:${i&lt;3?C.man:i&lt;7?C.or:C.al}&quot;>${l[3]}&lt;/td>
     &lt;td class=&quot;n muted&quot;>${l[4]}&lt;/td>&lt;/tr>`).join('');
 
-  $('#genReport').onclick=e=>{e.target.textContent='Rapport généré ✓';
+  $('#genReport').onclick=e=>{
+    const kpis=$$('#v-ia .kpi').map(k=>k.querySelector('.k').textContent+' : '+k.querySelector('.v').textContent+' ('+k.querySelector('.u').textContent+')');
+    const lines=['SENTINELLE CI — CarbonConnect · Rapport MRV et anomalies','Généré le '+new Date().toLocaleString('fr-FR'),'',
+      '=== Indicateurs clés ===',...kpis,'',
+      '=== Anomalies détectées ===',...AL.map(a=>'['+a[0].toUpperCase()+'] '+a[1]+' — '+a[2]+' ('+a[3]+')'),'',
+      '=== Leviers de réduction par coût d\'abattement ===',...LV.map(l=>l[0]+' · '+l[1]+' · '+l[2]+' · '+l[3]+' · '+l[4])];
+    const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='carbonconnect_rapport_'+new Date().toISOString().slice(0,10)+'.txt';
+    document.body.appendChild(a); a.click(); a.remove();
+    e.target.textContent='Rapport généré ✓ (téléchargé)';
     setTimeout(()=>e.target.textContent='Générer le rapport',2600);};
 };
 
@@ -5718,6 +5895,16 @@ function ccOpen(){var o=document.getElementById("ccOv");o.style.display="block";
   f.setAttribute("srcdoc",h.getAttribute("data-sd"));_ccL=true;}}
 function ccClose(){document.getElementById("ccOv").style.display="none";}
 function ccFull(){var f=document.getElementById("ccFrame");if(f.requestFullscreen){f.requestFullscreen();}}
+</script>
+<script>
+/* ===== Enregistrement du service worker (installation PWA / mode hors-ligne) =====
+   Ignoré si le fichier est ouvert en local (file://) ou via le lien de secours en
+   data URI : les service workers exigent un contexte https:// (ou localhost). */
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () { /* silencieux : non bloquant pour la plateforme */ });
+  });
+}
 </script>
 </body>
 </html>
