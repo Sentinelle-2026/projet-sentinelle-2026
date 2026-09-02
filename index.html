@@ -3015,6 +3015,24 @@
     sifca:              { u: 'sifca', p: 'demo2026' }
   };
 
+  /* Les intitulés numérotés des panneaux (« 1 ZONE DE SURVEILLANCE », « 2 PARAMÈTRES DE
+     DÉTECTION », etc.) ne sont pas des libellés figés dans le HTML : certaines sections sont
+     masquées selon le rôle (.tech-only) ou le domaine actif. Sans renumérotation, un rôle qui
+     masque une section fait sauter un numéro plus bas (ex. « COUCHES AFFICHÉES » affiché en 3
+     alors que la section 2 est cachée) et peut même faire apparaître deux sections avec le même
+     numéro. On renumérote donc à chaque changement de rôle ou de domaine pour que la séquence
+     affichée reste toujours 1, 2, 3... sans trou ni doublon. */
+  window.MW_renumberSections = function () {
+    var n = 0;
+    Array.prototype.slice.call(document.querySelectorAll('.sec-title')).forEach(function (el) {
+      var numEl = el.querySelector('.num');
+      if (!numEl) return;
+      if (el.offsetParent === null) return; /* masqué (display:none sur lui ou un ancêtre) */
+      n++;
+      numEl.textContent = n;
+    });
+  };
+
   window.MW_setRole = function (role) {
     var r = MW_ROLES[role] || MW_ROLES.decideur;
     window.MW_currentRole = role;
@@ -3030,6 +3048,7 @@
       appBtn.disabled = !r.canApply;
       appBtn.title = r.canApply ? '' : 'Action réservée aux rôles Décideur habilités (moindre privilège)';
     }
+    window.MW_renumberSections();
   };
 
   /* ---------- connexion (prototype) : on choisit d'abord la STRUCTURE (institution ou
@@ -3093,13 +3112,24 @@
   /* petit guide "deux interfaces" : explique qu'il y a SENTINELLE et CarbonConnect CI et
      montre comment basculer de l'une à l'autre — une fois par structure connectée (même
      logique que le guide de première visite de CarbonConnect), positionné dynamiquement
-     sous le bouton 🌍 CARBON CONNECT CI pour rester juste à côté quel que soit l'écran. */
+     sous le bouton 🌍 CARBON CONNECT CI pour rester juste à côté quel que soit l'écran.
+     Sur téléphone, un tiroir (Filtres/Analyse) peut être ouvert juste après la connexion
+     (ex. une entreprise multi-sites qui vient de choisir son site) : comme ce guide a un
+     z-index élevé, il recouvrirait alors tout le contenu du tiroir en donnant l'impression
+     que « le menu ne s'affiche pas ». On attend donc que les tiroirs soient refermés avant
+     de l'afficher (avec une limite pour ne pas rester muet indéfiniment si l'utilisateur
+     garde un tiroir ouvert). */
   window.MW_maybeShowInterfaceIntro = function (key) {
     var seenKey = 'sentinelle_intro_seen__' + key;
     var seen = false;
     try { seen = localStorage.getItem(seenKey) === '1'; } catch (e) {}
     if (seen) return;
-    setTimeout(function () {
+    var attempts = 0;
+    function tryShow() {
+      attempts++;
+      var lOpen = document.getElementById('left') && document.getElementById('left').classList.contains('mobile-open');
+      var rOpen = document.getElementById('right') && document.getElementById('right').classList.contains('mobile-open');
+      if ((lOpen || rOpen) && attempts < 20) { setTimeout(tryShow, 400); return; }
       var btn = document.getElementById('btn-toggle-carbone');
       var el = document.getElementById('interfaceIntro');
       if (!btn || !el) return;
@@ -3112,7 +3142,8 @@
         el.classList.remove('on');
         try { localStorage.setItem(seenKey, '1'); } catch (e) {}
       };
-    }, 1300);
+    }
+    setTimeout(tryShow, 1300);
   };
 
   /* connexion effective une fois la structure authentifiée. */
@@ -3236,6 +3267,7 @@
       if (nextTab) nextTab.click();
     }
     if (!silent) toast(d.icon + ' Domaine actif : ' + d.label.replace(/^[^ ]+ /, '') + ' — vue allégée sur ce domaine');
+    window.MW_renumberSections();
   };
 
   window.MW_openDomainGate = function (mandatory) {
