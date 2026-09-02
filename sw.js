@@ -11,7 +11,7 @@
    réseau et ne sont pas interceptées ici, pour rester simple et fiable.
    ============================================================ */
 
-const CACHE_NAME = 'sentinelle-ci-shell-v1';
+const CACHE_NAME = 'sentinelle-ci-shell-v2';
 const APP_SHELL = [
   './',
   './index.html',
